@@ -14,7 +14,9 @@ public abstract class GeneralPage {
 	private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
 	private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
 	private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
-	private final By centerWelcomeMessage = By.xpath("//*[@id=\"content\"]/h1");
+	private final By tabFAQ = By.xpath("//div[@id='menu']//a[@href=\"/Page/FAQ.cshtml\"]");
+	private final By tabRegister = By.xpath("//div[@id='menu']//a[@href=\"/Account/Register.cshtml\"]");
+		
 	// Elements
 	protected WebElement getTabLogin() {
 	    return Constant.WEBDRIVER.findElement(tabLogin);
@@ -28,8 +30,13 @@ public abstract class GeneralPage {
 	    return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
 	}
 	
-	protected WebElement getLCenterWelcomeMessage() {
-	    return Constant.WEBDRIVER.findElement(centerWelcomeMessage);
+	
+	protected WebElement getTagFAQ() {
+	    return Constant.WEBDRIVER.findElement(tabFAQ);
+	}
+	
+	protected WebElement getTagRegister() {
+	    return Constant.WEBDRIVER.findElement(tabRegister);
 	}
 	
 	// Methods
@@ -39,15 +46,33 @@ public abstract class GeneralPage {
 	    return this.getLblWelcomeMessage().getText();
 	}
 	
-	public String getCenterWelcomeMessage()
-	{
-
-	    return this.getLCenterWelcomeMessage().getText();
-	}
 
 	public LoginPage gotoLoginPage()
 	{
 	    this.getTabLogin().click();
 	    return new LoginPage();
+	}
+	
+	public HomePage gotoLogoutPage()
+	{
+	    this.getTabLogout().click();
+	    return new HomePage();
+	}
+	
+	public boolean isTagLogOutDisplayed()
+	{
+		return Constant.WEBDRIVER.findElements(tabLogout).size() > 0;
+	}
+	
+	public FAQPage gotoFAQPage()
+	{
+	    this.getTagFAQ().click();
+	    return new FAQPage();
+	}
+	
+	public RegisterPage gotoRegisterPage()
+	{
+	    this.getTagRegister().click();
+	    return new RegisterPage();
 	}
 }

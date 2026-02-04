@@ -2,15 +2,18 @@ package Railway;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import Class.User;
 import Constant.Constant;
 
 public class LoginPage extends GeneralPage {
-    // Locators
+    // Locators 
     private final By _txtUsername = By.xpath("//input[@id='username']");
     private final By _txtPassword = By.xpath("//input[@id='password']");
     private final By _btnLogin = By.xpath("//input[@value='login']");
     private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
 
+    
     // Elements
     public WebElement getTxtUsername() {
         return Constant.WEBDRIVER.findElement(_txtUsername);
@@ -28,6 +31,7 @@ public class LoginPage extends GeneralPage {
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
     
+	
  // Methods
     public HomePage login(String username, String password) {
         this.getTxtUsername().sendKeys(username);
@@ -35,4 +39,20 @@ public class LoginPage extends GeneralPage {
         this.getBtnLogin().click();
         return new HomePage();
     }
+    
+    public HomePage login(User user) {     
+        return login(user.getUsername(), user.getPassword());
+    }
+    
+   
+	public String getLoginErrorMsg()
+	{
+
+	    return this.getLblLoginErrorMsg().getText();
+	}
+	
+	public boolean isAtLoginPage() 
+	{
+		return Constant.WEBDRIVER.getTitle().contains("Login");
+	}
 }
