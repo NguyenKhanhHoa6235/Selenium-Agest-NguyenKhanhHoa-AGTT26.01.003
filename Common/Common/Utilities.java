@@ -20,14 +20,13 @@ import Constant.Constant;
 
 public class Utilities {
 
-//Tạo một địa chỉ Email ngẫu nhiên dưah trên thơi gia hiện tại để phục vụ đăng ký tài khoản
     public static String generateTimestampEmail() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
         String timestamp = LocalDateTime.now().format(formatter);
         return timestamp;
     }
     
-//    OPEN AND RELOAD PAGE
+    //OPEN AND RELOAD PAGE
     public static void open(String URL) {
     		Constant.WEBDRIVER.navigate().to(URL);
     }
@@ -56,7 +55,7 @@ public class Utilities {
 	    	Set<String> windows = Constant.WEBDRIVER.getWindowHandles();
 	    	String lastWindown = windows.toArray(new String[0])[windows.size() - 1];
 	    	Constant.WEBDRIVER.switchTo().window(lastWindown);
-}
+    }
     
     
     //WAIT
