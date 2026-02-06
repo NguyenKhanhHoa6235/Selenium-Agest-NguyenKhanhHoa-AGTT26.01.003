@@ -15,8 +15,11 @@ public class RegisterPage {
     private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
     private final By _txtPidOrPassportNumber = By.xpath("//input[@id='pid']");
     private final By _btnRegister = By.xpath("//input[@value='Register']");
-    private final By _lblRegisterErrorMsg = By.xpath("//p[@class='message error']");
-
+    private final By _lblThanksRegisterAccountMsg = By.xpath("//div[@id='content']//h1");
+    private final By _lblRegistrationConfirmedMsg = By.xpath("//div[@id='content']/p");
+    private final By _lblRegisterErrorMsg = By.xpath("//p[@class='message error']");  
+    private final By _lblRegisterErrorPwdMsg = By.xpath("//input[@id='password']//following-sibling::label");
+    private final By _lblRegisterErrorPidMsg = By.xpath("//input[@id='pid']//following-sibling::label");
     
     // Elements
     public WebElement getTxtEmail() {
@@ -39,11 +42,22 @@ public class RegisterPage {
     public WebElement getBtnRegister() {
         return Constant.WEBDRIVER.findElement(_btnRegister);
     }
+    
+    public WebElement getlblThanksRegisterAccountMsg() {
+        return Constant.WEBDRIVER.findElement(_lblThanksRegisterAccountMsg);
+    }
 
     public WebElement getlblRegisterErrorMsg() {
         return Constant.WEBDRIVER.findElement(_lblRegisterErrorMsg);
     }
-
+    
+    public WebElement getlblRegisterErrorPwdMsg() {
+        return Constant.WEBDRIVER.findElement(_lblRegisterErrorPwdMsg);
+    }
+    
+    public WebElement getlblRegisterErrorPidMsg() {
+        return Constant.WEBDRIVER.findElement(_lblRegisterErrorPidMsg);
+    }
     
     
     //Method
@@ -59,10 +73,11 @@ public class RegisterPage {
     
     public String registerWithEmailGuerrilla(String password, String pid)
     {
-    		//tag 1: Railway
+    		//tag 1: Railway + click on link "create an account"
 		HomePage homePage = new HomePage();
 	    homePage.open();
-	    String railwayTab = Constant.WEBDRIVER.getWindowHandle();
+	    String railwayTab = Constant.WEBDRIVER.getWindowHandle();	
+	    RegisterPage registerPage = homePage.ClicklinkCreateAccount();
 	    
 	    //tag 2: GuerrillaMail + get email
 	    String guerrillaTag = Utilities.openNewTab();
@@ -77,8 +92,6 @@ public class RegisterPage {
 	    
 	    // Back Railway + register
 	    Utilities.switchToWindow(railwayTab);
-	
-	    RegisterPage registerPage = homePage.gotoRegisterPage();
 	    registerPage.register(fullEmailAdrress, password, pid);
 	
 	    // back GuerrillaMail + confirmation email
@@ -89,9 +102,44 @@ public class RegisterPage {
 	    return fullEmailAdrress;	    
     }
     
+	public String getThanksRegisterAccountMsg()
+	{
+	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblThanksRegisterAccountMsg)).getText();
+	}
+	
+	public String getRegistrationConfirmedMsg()
+	{
+	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblRegistrationConfirmedMsg)).getText();
+	}
+	    
 	public String getRegisterErrorMsg()
 	{
 
 	    return this.getlblRegisterErrorMsg().getText();
 	}
+	
+	public String getRegisterErrorPwdMsg()
+	{
+
+	    return this.getlblRegisterErrorPwdMsg().getText();
+	}
+
+	
+	public String getRegisterErrorPidMsg()
+	{
+
+	    return this.getlblRegisterErrorPidMsg().getText();
+	}
+	
+
+	public boolean isAtFormRegister() 
+	{
+		return Constant.WEBDRIVER.getTitle().contains("Register an Account");
+	}
+	
+	public boolean isAtRegistrationConfirmedPage() 
+	{
+		return Constant.WEBDRIVER.getTitle().contains("Registration Confirmation Page");
+	}
+	
 }

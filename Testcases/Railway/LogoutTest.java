@@ -11,7 +11,6 @@ public class LogoutTest extends TestBase {
     @Test
     public void TC06() {
         System.out.println("TC06 - User is redirected to Home page after logging out");
-        
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword(Constant.PASSWORD);
         

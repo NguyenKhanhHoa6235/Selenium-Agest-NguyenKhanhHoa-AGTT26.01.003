@@ -3,6 +3,7 @@ package Common;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.openqa.selenium.By;
@@ -47,6 +48,12 @@ public class Utilities {
 	    	Constant.WEBDRIVER.switchTo().newWindow(WindowType.TAB);
 	    	Constant.WEBDRIVER.get(url);
     }
+    
+    public static void switchToLastTag() {
+	    	Set<String> windows = Constant.WEBDRIVER.getWindowHandles();
+	    	String lastWindown = windows.toArray(new String[0])[windows.size() - 1];
+	    	Constant.WEBDRIVER.switchTo().window(lastWindown);
+}
     
     
     //WAIT
@@ -99,5 +106,13 @@ public class Utilities {
     public static void scrollAndClick(WebElement element){
 		scrollToElement(element);
 		element.click();
+    }
+    
+    //
+
+    public static void jsClick(By locator) {
+        WebElement element = Constant.WEBDRIVER.findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+        js.executeScript("arguments[0].click();", element);
     }
 }
