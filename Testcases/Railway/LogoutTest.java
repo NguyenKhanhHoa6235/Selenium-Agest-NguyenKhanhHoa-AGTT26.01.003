@@ -1,9 +1,10 @@
 package Railway;
 
 import org.testng.annotations.Test;
-import Class.User;
 import org.testng.Assert;
+
 import Constant.Constant;
+import Class.User;
 
 public class LogoutTest extends TestBase {
 	User userAccount = new User();
@@ -14,8 +15,10 @@ public class LogoutTest extends TestBase {
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword(Constant.PASSWORD);
         
+//        Utilities.openToAndSwitchTag(Constant.RAIWAY_URL);
         HomePage homePage = new HomePage();
         homePage.open();
+        Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
 
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(userAccount);

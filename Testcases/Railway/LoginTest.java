@@ -17,15 +17,22 @@ public class LoginTest extends TestBase {
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword(Constant.PASSWORD);
         
+        
+        System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
 
+        
+        System.out.println("2. Click on \"Login\" tab");
         LoginPage loginPage = homePage.gotoLoginPage();
 
+        
+        System.out.println("3. Enter valid Email and Password");   
+        System.out.println("4. Click on \"Login\" button");
         String actualMsg = loginPage.login(userAccount).getWelcomeMessage();
         String expectedMsg = "Welcome " + Constant.USERNAME;
-//        String actualMsg = loginPage.login(Constant.USERNAME, Constant.PASSWORD).getCenterWelcomeMessage();     
-//        String expectedMsg = "Welcome to Safe Railway";
+
+        //Verify
         Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
     }
     
@@ -36,16 +43,23 @@ public class LoginTest extends TestBase {
         userAccount.setUsername("");
         userAccount.setPassword(Constant.PASSWORD);
         
+        
+        System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
 
+        
+        System.out.println("2. Click on \"Login\" tab");
+        System.out.println("3. User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox ");   
+        System.out.println("4. Click on \"Login\" button");
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(userAccount);
         
+        //Verify
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");
         
+        Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");        
         Assert.assertTrue(loginPage.isAtLoginPage());
 
     }
@@ -57,16 +71,24 @@ public class LoginTest extends TestBase {
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword("122546546");
         
+        
+        System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
 
+        
+        System.out.println("2. Click on \"Login\" tab");
+        System.out.println("3. Enter valid Email and invalid Password");   
+        System.out.println("4. Click on \"Login\" button");
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(userAccount);
         
+        
+        //Verify
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
-        Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
         
+        Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected"); 
         Assert.assertTrue(loginPage.isAtLoginPage());
 
     }
@@ -79,23 +101,32 @@ public class LoginTest extends TestBase {
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword("122546546");
         
+        String expectedNormalMsg = "Invalid username or password. Please try again";
+        String expectedLimitMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        
+        
+        System.out.println("1. Navigate to QA Railway Website");
+        System.out.println("2. Click on \"Login\" tab");
+        
         HomePage homePage = new HomePage();
         homePage.open();
         LoginPage loginPage = homePage.gotoLoginPage();
         
-        String expectedNormalMsg = "Invalid username or password. Please try again";
-        String expectedLimitMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        
+        
+        System.out.println("3. Enter valid information into \"Username\" textbox except \"Password\" textbox.");   
+        System.out.println("4. Click on \"Login\" button");
+        System.out.println("5. Repeat step 3 and 4 three more times.");
+        
         String actualMsg;
         for(int i = 1; i <= 4; i++) 
         {
         		loginPage.login(userAccount);
-        		
 
         		if(i < 4)
         		{
             		actualMsg = loginPage.getLoginErrorMsg();
-            		Assert.assertEquals(actualMsg, expectedNormalMsg, "Error message at attempt " + i + " is incorrect");
-            		
+            		Assert.assertEquals(actualMsg, expectedNormalMsg, "Error message at attempt " + i + " is incorrect");       		
         		}
         		else {
         			actualMsg = loginPage.getLoginErrorMsg();
@@ -116,16 +147,24 @@ public class LoginTest extends TestBase {
       userAccount.setUsername("nguyenkhanhhoa6235@gmail.com");
       userAccount.setPassword("12345678");
       
+      System.out.println("1. Navigate to QA Railway Website");
+      System.out.println("2. Click on \"Login\" tab");
       HomePage homePage = new HomePage();
       homePage.open();
 
       LoginPage loginPage = homePage.gotoLoginPage();
+      
+      
+      System.out.println("3. Enter username and password of account hasn't been activated.");
+      System.out.println("4. Click on \"Login\" button");
       loginPage.login(userAccount);
       
+      
+      //Verify
       String actualMsg = loginPage.getLoginErrorMsg();
       String expectedMsg = "Invalid username or password. Please try again.";
-      Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
       
+      Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected"); 
       Assert.assertTrue(loginPage.isAtLoginPage(), "User should stay at Login page");
 
   }

@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Railway.RegisterTest">
+      <class name="Railway.LogoutTest">
         <methods>
-          <include name="TC08"/>
+          <include name="TC06"/>
           <include name="beforeMethod"/>
           <include name="afterMethod"/>
-          <include name="TC09"/>
         </methods>
-      </class> <!-- Railway.RegisterTest -->
+      </class> <!-- Railway.LogoutTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

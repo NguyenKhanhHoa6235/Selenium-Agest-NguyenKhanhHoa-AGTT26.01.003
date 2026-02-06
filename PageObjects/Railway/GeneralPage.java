@@ -36,38 +36,32 @@ public abstract class GeneralPage {
 	}
 	
 	// Methods
-	public String getWelcomeMessage()
-	{
+	public String getWelcomeMessage() {
 
 	    return this.getLblWelcomeMessage().getText();
 	}
 	
 
-	public LoginPage gotoLoginPage()
-	{
+	public LoginPage gotoLoginPage() {
 	    this.getTabLogin().click();
 	    return new LoginPage();
 	}
 	
-	public HomePage gotoLogoutPage()
-	{
+	public HomePage gotoLogoutPage() {
 	    this.getTabLogout().click();
 	    return new HomePage();
 	}
 	
-	public boolean isTagLogOutDisplayed()
-	{
+	public boolean isTagLogOutDisplayed() {
 		return Constant.WEBDRIVER.findElements(tabLogout).size() > 0;
 	}
 	
-	public FAQPage gotoFAQPage()
-	{
+	public FAQPage gotoFAQPage() {
 	    this.getTagFAQ().click();
 	    return new FAQPage();
 	}
 	
-	public RegisterPage gotoRegisterPage()
-	{
+	public RegisterPage gotoRegisterPage() {
 	    this.getTagRegister().click();
 	    return new RegisterPage();
 	}

@@ -6,8 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -114,5 +117,20 @@ public class Utilities {
         WebElement element = Constant.WEBDRIVER.findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
         js.executeScript("arguments[0].click();", element);
+    }
+    
+    public static void dismissAlertIfPresent(WebDriver driver) {
+        try {
+            Alert alert = driver.switchTo().alert();
+            System.out.println("⚠ Alert detected. Dismissing alert...");
+            alert.dismiss();
+        } catch (NoAlertPresentException e) {
+            System.out.println("✅ No alert present. Continue test...");
+        }
+    }
+    
+    //Find element
+    public static WebElement findElement(By locator) {
+        return Constant.WEBDRIVER.findElement(locator);
     }
 }

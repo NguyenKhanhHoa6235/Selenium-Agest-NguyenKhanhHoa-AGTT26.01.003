@@ -36,10 +36,7 @@ public class RegisterTest extends TestBase{
     		System.out.println("Pre-condition: an actived account is existing");
     		
     		RegisterPage register = new RegisterPage();
-    		String fullEmailAdrress = register.registerWithEmailGuerrilla("12345678", "12345678");
-    		
-    		System.out.println("nguyenkhanh hoa: "+ fullEmailAdrress);
-    		
+    		String fullEmailAdrress = register.registerWithEmailGuerrilla("12345678", "12345678"); 		
     		
     		//data
     		String accountAlreadyExists = fullEmailAdrress;
@@ -51,8 +48,7 @@ public class RegisterTest extends TestBase{
      
         Utilities.openToAndSwitchTag(Constant.RAIWAY_URL);
         HomePage homePage = new HomePage();
-  
-        
+    
         
         System.out.println("2. Click onRegister tab");
         
@@ -152,6 +148,7 @@ public class RegisterTest extends TestBase{
         String guerrillaTag = Utilities.openNewTab();
         GuerrillaMailPage mailPage = new GuerrillaMailPage();
         mailPage.open();
+        Utilities.dismissAlertIfPresent(Constant.WEBDRIVER);
         String emailName = Utilities.generateTimestampEmail();
         
         mailPage.setEmailName(emailName);
@@ -179,6 +176,7 @@ public class RegisterTest extends TestBase{
         
 
 	    Utilities.switchToWindow(guerrillaTag);
+	    Utilities.dismissAlertIfPresent(Constant.WEBDRIVER);
 	    mailPage.setEmailName(emailName);
 	    mailPage.openFirstMail();
 	    

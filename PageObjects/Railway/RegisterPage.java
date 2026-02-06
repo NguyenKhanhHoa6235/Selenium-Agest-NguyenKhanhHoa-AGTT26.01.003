@@ -3,7 +3,6 @@ package Railway;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import Class.User;
 import Common.Utilities;
 import Constant.Constant;
 import Guerillamai.GuerrillaMailPage;
@@ -102,43 +101,36 @@ public class RegisterPage {
 	    return fullEmailAdrress;	    
     }
     
-	public String getThanksRegisterAccountMsg()
-	{
+	public String getThanksRegisterAccountMsg() {
 	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblThanksRegisterAccountMsg)).getText();
 	}
 	
-	public String getRegistrationConfirmedMsg()
-	{
+	public String getRegistrationConfirmedMsg(){
 	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblRegistrationConfirmedMsg)).getText();
 	}
 	    
-	public String getRegisterErrorMsg()
-	{
+	public String getRegisterErrorMsg() {
 
 	    return this.getlblRegisterErrorMsg().getText();
 	}
 	
-	public String getRegisterErrorPwdMsg()
-	{
+	public String getRegisterErrorPwdMsg() {
 
 	    return this.getlblRegisterErrorPwdMsg().getText();
 	}
 
 	
-	public String getRegisterErrorPidMsg()
-	{
+	public String getRegisterErrorPidMsg() {
 
 	    return this.getlblRegisterErrorPidMsg().getText();
 	}
 	
 
-	public boolean isAtFormRegister() 
-	{
+	public boolean isAtFormRegister() {
 		return Constant.WEBDRIVER.getTitle().contains("Register an Account");
 	}
 	
-	public boolean isAtRegistrationConfirmedPage() 
-	{
+	public boolean isAtRegistrationConfirmedPage() {
 		return Constant.WEBDRIVER.getTitle().contains("Registration Confirmation Page");
 	}
 	

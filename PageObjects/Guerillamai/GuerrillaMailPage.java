@@ -1,11 +1,7 @@
 package Guerillamai;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Common.Utilities;
 import Constant.Constant;
@@ -56,8 +52,7 @@ public class GuerrillaMailPage {
     		return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_confirmationEmail));
     }
     
-    //Method
-    
+    //Method   
     public GuerrillaMailPage open() {
     		Constant.WEBDRIVER.navigate().to(Constant.GUERRILLA_URL);
 		return this;
