@@ -1,26 +1,12 @@
 package Railway;
 
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import Class.User;
-
 import org.testng.Assert;
-
 import Constant.Constant;
 
-public class LogoutTest {
+public class LogoutTest extends TestBase {
 	User userAccount = new User();
-	
-    @BeforeMethod
-    public void beforeMethod() {
-        System.out.println("Pre-condition");     
-        
-        Constant.WEBDRIVER = new ChromeDriver();
-        Constant.WEBDRIVER.manage().window();
-    }
     
     @Test
     public void TC06() {
@@ -42,13 +28,5 @@ public class LogoutTest {
         
         Assert.assertFalse(homePageOut.isTagLogOutDisplayed(),"Logout tab should not exist");       
     }
-
-
-    @AfterMethod
-    public void afterMethod() {
-        System.out.println("Post-condition");
-        Constant.WEBDRIVER.quit();
-    }
-    
 
 }

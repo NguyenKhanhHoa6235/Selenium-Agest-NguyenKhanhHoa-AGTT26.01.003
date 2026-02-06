@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Class.User;
+import Common.Utilities;
 import Constant.Constant;
+import Guerillamai.GuerrillaMailPage;
 
 public class RegisterPage {
     // Locators 
@@ -47,22 +49,44 @@ public class RegisterPage {
     //Method
     public void register(String email, String password, String pid)
     {
-    		this.getTxtEmail().sendKeys(email);
-    		this.getTxtPassword().sendKeys(password);
-    		this.getTxtConfirmPassword().sendKeys(password);
-    		this.getTxtPidOrPassportNumber().sendKeys(pid);
+    		getTxtEmail().sendKeys(email);
+    		getTxtPassword().sendKeys(password);
+    		getTxtConfirmPassword().sendKeys(password);
+    		getTxtPidOrPassportNumber().sendKeys(pid);
     		
-    		this.getBtnRegister().click();
+    		Utilities.scrollAndClick(getBtnRegister());   		
     }
     
-    public void register(User user)
+    public String registerWithEmailGuerrilla(String password, String pid)
     {
-    		this.getTxtEmail().sendKeys(user.getUsername());
-    		this.getTxtPassword().sendKeys(user.getPassword());
-    		this.getTxtConfirmPassword().sendKeys(user.getPassword());
-    		this.getTxtPidOrPassportNumber().sendKeys("");
-    		
-    		this.getBtnRegister().click();
+    		//tag 1: Railway
+		HomePage homePage = new HomePage();
+	    homePage.open();
+	    String railwayTab = Constant.WEBDRIVER.getWindowHandle();
+	    
+	    //tag 2: GuerrillaMail + get email
+	    String guerrillaTag = Utilities.openNewTab();
+	    GuerrillaMailPage mailPage = new GuerrillaMailPage();
+	    mailPage.open();
+	    String emailName = Utilities.generateTimestampEmail();
+	    
+	    mailPage.setEmailName(emailName);
+	    String fullEmailAdrress = mailPage.getCreatedEmail();
+	    
+	    System.out.println(fullEmailAdrress);
+	    
+	    // Back Railway + register
+	    Utilities.switchToWindow(railwayTab);
+	
+	    RegisterPage registerPage = homePage.gotoRegisterPage();
+	    registerPage.register(fullEmailAdrress, password, pid);
+	
+	    // back GuerrillaMail + confirmation email
+	    Utilities.switchToWindow(guerrillaTag);
+	    mailPage.setEmailName(emailName);
+	    mailPage.openFirstMail();
+	    
+	    return fullEmailAdrress;	    
     }
     
 	public String getRegisterErrorMsg()
