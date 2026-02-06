@@ -122,10 +122,10 @@ public class Utilities {
     public static void dismissAlertIfPresent(WebDriver driver) {
         try {
             Alert alert = driver.switchTo().alert();
-            System.out.println("⚠ Alert detected. Dismissing alert...");
+            System.out.println("Alert detected. Dismissing alert...");
             alert.dismiss();
         } catch (NoAlertPresentException e) {
-            System.out.println("✅ No alert present. Continue test...");
+            System.out.println("No alert present. Continue test...");
         }
     }
     
