@@ -74,7 +74,7 @@ public class Utilities {
     public static void waitAndClick(By locator) {
     	WebDriverWait wait = new WebDriverWait(
     	        Constant.WEBDRIVER,
-    	        Duration.ofSeconds(30)
+    	        Duration.ofSeconds(Constant.TIMEOUT)
     	    );
 
     	    WebElement element = wait.until(
