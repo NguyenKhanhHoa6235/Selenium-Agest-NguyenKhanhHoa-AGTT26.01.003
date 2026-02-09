@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Constant.Constant;
@@ -57,6 +58,12 @@ public class Utilities {
 	    	Constant.WEBDRIVER.switchTo().window(lastWindown);
     }
     
+    public static void switchToFirstTab() {
+        Set<String> windows = Constant.WEBDRIVER.getWindowHandles();
+        String firstWindow = windows.toArray(new String[0])[0];
+        Constant.WEBDRIVER.switchTo().window(firstWindow);
+    }
+
     
     //WAIT
     public static By waitForVisible(By locator, int timeout){
@@ -71,7 +78,7 @@ public class Utilities {
     
     //WAIT TO CLICK
     public static void waitAndClick(By locator) {
-    	WebDriverWait wait = new WebDriverWait(
+    		WebDriverWait wait = new WebDriverWait(
     	        Constant.WEBDRIVER,
     	        Duration.ofSeconds(Constant.TIMEOUT)
     	    );
@@ -81,6 +88,37 @@ public class Utilities {
     	    );
 
     	    element.click();
+    }
+    
+    //WAIT TO SENDKEY 
+    public static void waitAndSenkey(By locator, String input){		
+    		WebElement element = Constant.WEBDRIVER.findElement(waitForVisible(locator, Constant.TIMEOUT));
+    		element.clear();
+    		element.sendKeys(input);
+    }
+    
+    
+    //ALERT 
+    public static void waitAlertAndAccept(By locator) {
+    		WebDriverWait wait = new WebDriverWait(
+    	        Constant.WEBDRIVER,
+    	        Duration.ofSeconds(Constant.TIMEOUT)
+    	    );
+
+	    	wait.until(ExpectedConditions.alertIsPresent());
+	
+	    	Constant.WEBDRIVER.switchTo().alert().accept();
+    }
+    
+    public static void waitAlertAndDismiss(By locator) {
+    		WebDriverWait wait = new WebDriverWait(
+    	        Constant.WEBDRIVER,
+    	        Duration.ofSeconds(Constant.TIMEOUT)
+    	    );
+
+	    	wait.until(ExpectedConditions.alertIsPresent());
+	
+	    	Constant.WEBDRIVER.switchTo().alert().dismiss();
     }
 
     
@@ -110,18 +148,52 @@ public class Utilities {
 		element.click();
     }
     
-    //
+    //SELECT
+    public static void selectByVisibleText(WebElement element, String text){
+		scrollToElement(element);
+		Select select = new Select(element);
+		select.selectByVisibleText(text);
+    }
+    
+    public static void selectByVisibleText(By locator, String text){
+		scrollToElement(locator);
+		Select select = new Select(findElement(locator));
+		select.selectByVisibleText(text);
+    }
+    
+    public static void selectByIndex(By locator, int index){
+		scrollToElement(locator);
+		Select select = new Select(findElement(locator));
+		select.selectByIndex(index);
+    }
 
+    
+    //
     public static void jsClick(By locator) {
         WebElement element = Constant.WEBDRIVER.findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
         js.executeScript("arguments[0].click();", element);
     }
     
-    public static void dismissAlertIfPresent(WebDriver driver) {
+    public static void removeAdsIframes() {
         try {
-            Alert alert = driver.switchTo().alert();
-            System.out.println("Alert detected. Dismissing alert...");
+            JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+            js.executeScript(
+                    "document.querySelectorAll(" +
+                    "'iframe[id^=\"aswift\"], " +
+                    "iframe[src*=\"doubleclick\"], " +
+                    "div[id^=\"aswift\"]'" +
+                    "div[id=\"ad_position_box\"]'" +
+                    ").forEach(e => e.remove());"
+                );
+        } catch (Exception e) {
+            System.out.println("Not fount Ads");
+        }
+    }
+    
+    public static void dismissAlertIfPresent() {
+        try {
+            Alert alert = Constant.WEBDRIVER.switchTo().alert();
             alert.dismiss();
         } catch (NoAlertPresentException e) {
             System.out.println("No alert present. Continue test...");

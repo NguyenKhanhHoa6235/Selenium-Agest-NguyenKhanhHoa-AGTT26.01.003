@@ -12,7 +12,7 @@ public class LoginPage extends GeneralPage {
     private final By _txtPassword = By.xpath("//input[@id='password']");
     private final By _btnLogin = By.xpath("//input[@value='login']");
     private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
-
+    private final By _lblForgotPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
     
     // Elements
     public WebElement getTxtUsername() {
@@ -29,6 +29,10 @@ public class LoginPage extends GeneralPage {
 
     public WebElement getLblLoginErrorMsg() {
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
+    }
+    
+    public WebElement getLblForgotPassword () {
+        return Constant.WEBDRIVER.findElement(_lblForgotPassword);
     }
     
 	
@@ -49,6 +53,11 @@ public class LoginPage extends GeneralPage {
 	{
 
 	    return this.getLblLoginErrorMsg().getText();
+	}
+	
+	public void clickForgotPassword()
+	{
+	    this.getLblForgotPassword().click();
 	}
 	
 	public boolean isAtLoginPage() 

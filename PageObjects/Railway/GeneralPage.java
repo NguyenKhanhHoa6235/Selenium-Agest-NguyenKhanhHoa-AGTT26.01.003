@@ -4,44 +4,60 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Constant.Constant;
+import Constant.MenuItem;
 
 public abstract class GeneralPage {
 	// Locators
-	private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
-	private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
-	private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
-	private final By tabFAQ = By.xpath("//div[@id='menu']//a[@href=\"/Page/FAQ.cshtml\"]");
-	private final By tabRegister = By.xpath("//div[@id='menu']//a[@href=\"/Account/Register.cshtml\"]");
-		
+	private final By _tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
+	private final By _tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
+	private final By _tabFAQ = By.xpath("//div[@id='menu']//a[@href=\"/Page/FAQ.cshtml\"]");
+	private final By _tabRegister = By.xpath("//div[@id='menu']//a[@href=\"/Account/Register.cshtml\"]");
+	private final By _tagBookTicket = By.xpath("//div[@id='menu']//span[text()='Book ticket']");
+	private final By _lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
 	// Elements
 	protected WebElement getTabLogin() {
-	    return Constant.WEBDRIVER.findElement(tabLogin);
+	    return Constant.WEBDRIVER.findElement(_tabLogin);
 	}
 
 	protected WebElement getTabLogout() {
-	    return Constant.WEBDRIVER.findElement(tabLogout);
+	    return Constant.WEBDRIVER.findElement(_tabLogout);
 	}
 
 	protected WebElement getLblWelcomeMessage() {
-	    return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
+	    return Constant.WEBDRIVER.findElement(_lblWelcomeMessage);
 	}
 	
 	
 	protected WebElement getTagFAQ() {
-	    return Constant.WEBDRIVER.findElement(tabFAQ);
+	    return Constant.WEBDRIVER.findElement(_tabFAQ);
 	}
 	
 	protected WebElement getTagRegister() {
-	    return Constant.WEBDRIVER.findElement(tabRegister);
+	    return Constant.WEBDRIVER.findElement(_tabRegister);
 	}
 	
+	protected WebElement getTagBookTicket() {
+	    return Constant.WEBDRIVER.findElement(_tagBookTicket);
+	}
+	
+
 	// Methods
 	public String getWelcomeMessage() {
 
 	    return this.getLblWelcomeMessage().getText();
 	}
-	
 
+    protected By getMenuItemLocator(MenuItem menu) {
+    		System.out.println(By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']"));
+        return By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']");
+    }
+	
+    protected void gotoPage(MenuItem menu) {
+        Constant.WEBDRIVER
+                .findElement(getMenuItemLocator(menu))
+                .click();
+    }
+    
 	public LoginPage gotoLoginPage() {
 	    this.getTabLogin().click();
 	    return new LoginPage();
@@ -52,8 +68,13 @@ public abstract class GeneralPage {
 	    return new HomePage();
 	}
 	
+	public BookTicketPage gotoBookTicketPage() {
+	    this.getTagBookTicket().click();
+	    return new BookTicketPage();
+	}
+	
 	public boolean isTagLogOutDisplayed() {
-		return Constant.WEBDRIVER.findElements(tabLogout).size() > 0;
+		return Constant.WEBDRIVER.findElements(_tabLogout).size() > 0;
 	}
 	
 	public FAQPage gotoFAQPage() {

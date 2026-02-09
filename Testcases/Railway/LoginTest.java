@@ -61,7 +61,6 @@ public class LoginTest extends TestBase {
         
         Assert.assertEquals(actualMsg, expectedMsg, "Error message is not displayed as expected");        
         Assert.assertTrue(loginPage.isAtLoginPage());
-
     }
     
     @Test

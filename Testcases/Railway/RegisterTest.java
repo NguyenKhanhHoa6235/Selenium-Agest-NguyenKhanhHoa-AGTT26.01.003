@@ -16,19 +16,7 @@ import Guerillamai.GuerrillaMailPage;
 
 public class RegisterTest extends TestBase{
 	User userAccount = new User();
-	
-	public String setAndGetEmailGuerrillaMail() {
-	    GuerrillaMailPage mailPage = new GuerrillaMailPage();
-	    mailPage.open();
-	    String emailName = Utilities.generateTimestampEmail();
-	    
-	    mailPage.setEmailName(emailName);
-	    String fullEmailAdrress = mailPage.getCreatedEmail();	
-	    
-	    return fullEmailAdrress;
-	}
 
-	
     @Test
     public void TC07() {
         System.out.println("TC07 - User can't create account with an already in-use email");
@@ -36,7 +24,7 @@ public class RegisterTest extends TestBase{
     		System.out.println("Pre-condition: an actived account is existing");
     		
     		RegisterPage register = new RegisterPage();
-    		String fullEmailAdrress = register.registerWithEmailGuerrilla("12345678", "12345678"); 		
+    		String fullEmailAdrress = registerWithEmailGuerrilla("12345678", "12345678"); 		
     		
     		//data
     		String accountAlreadyExists = fullEmailAdrress;
@@ -148,7 +136,7 @@ public class RegisterTest extends TestBase{
         String guerrillaTag = Utilities.openNewTab();
         GuerrillaMailPage mailPage = new GuerrillaMailPage();
         mailPage.open();
-        Utilities.dismissAlertIfPresent(Constant.WEBDRIVER);
+        Utilities.removeAdsIframes();
         String emailName = Utilities.generateTimestampEmail();
         
         mailPage.setEmailName(emailName);
@@ -176,12 +164,12 @@ public class RegisterTest extends TestBase{
         
 
 	    Utilities.switchToWindow(guerrillaTag);
-	    Utilities.dismissAlertIfPresent(Constant.WEBDRIVER);
+	    Utilities.removeAdsIframes();
 	    mailPage.setEmailName(emailName);
 	    mailPage.openFirstMail();
 	    
 	    //Switch to register Confirm
-	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(20));
+	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
 	    wait.until(ExpectedConditions.numberOfWindowsToBe(3)); 
 	    Utilities.switchToLastTag();
 

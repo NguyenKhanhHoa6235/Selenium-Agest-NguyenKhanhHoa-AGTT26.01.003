@@ -70,36 +70,6 @@ public class RegisterPage {
     		Utilities.scrollAndClick(getBtnRegister());   		
     }
     
-    public String registerWithEmailGuerrilla(String password, String pid)
-    {
-    		//tag 1: Railway + click on link "create an account"
-		HomePage homePage = new HomePage();
-	    homePage.open();
-	    String railwayTab = Constant.WEBDRIVER.getWindowHandle();	
-	    RegisterPage registerPage = homePage.ClicklinkCreateAccount();
-	    
-	    //tag 2: GuerrillaMail + get email
-	    String guerrillaTag = Utilities.openNewTab();
-	    GuerrillaMailPage mailPage = new GuerrillaMailPage();
-	    mailPage.open();
-	    String emailName = Utilities.generateTimestampEmail();
-	    
-	    mailPage.setEmailName(emailName);
-	    String fullEmailAdrress = mailPage.getCreatedEmail();
-	    
-	    System.out.println(fullEmailAdrress);
-	    
-	    // Back Railway + register
-	    Utilities.switchToWindow(railwayTab);
-	    registerPage.register(fullEmailAdrress, password, pid);
-	
-	    // back GuerrillaMail + confirmation email
-	    Utilities.switchToWindow(guerrillaTag);
-	    mailPage.setEmailName(emailName);
-	    mailPage.openFirstMail();
-	    
-	    return fullEmailAdrress;	    
-    }
     
 	public String getThanksRegisterAccountMsg() {
 	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblThanksRegisterAccountMsg)).getText();

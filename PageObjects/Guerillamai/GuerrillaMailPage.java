@@ -52,7 +52,8 @@ public class GuerrillaMailPage {
     		return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_confirmationEmail));
     }
     
-    //Method   
+    //Method
+    
     public GuerrillaMailPage open() {
     		Constant.WEBDRIVER.navigate().to(Constant.GUERRILLA_URL);
 		return this;

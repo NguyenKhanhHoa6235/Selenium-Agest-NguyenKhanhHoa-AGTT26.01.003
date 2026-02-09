@@ -7,16 +7,16 @@ import Constant.Constant;
 
 public class HomePage extends GeneralPage {
 	// Locators
-	private final By centerWelcomeMessage = By.xpath("//*[@id=\"content\"]/h1");
-	private final By linkCreateAccount = By.xpath("//div[@id='content']//a[text()='create an account']");
+	private final By _lblWelcomeMessage = By.xpath("//*[@id=\"content\"]/h1");
+	private final By _linkCreateAccount = By.xpath("//div[@id='content']//a[text()='create an account']");
 	
 	// Elements
 	protected WebElement getLCenterWelcomeMessage() {
-	    return Constant.WEBDRIVER.findElement(centerWelcomeMessage);
+	    return Constant.WEBDRIVER.findElement(_lblWelcomeMessage);
 	}
 	
 	protected WebElement getlinkCreateAccount() {
-	    return Constant.WEBDRIVER.findElement(linkCreateAccount);
+	    return Constant.WEBDRIVER.findElement(_linkCreateAccount);
 	}
 	
 	//Method
@@ -38,7 +38,7 @@ public class HomePage extends GeneralPage {
 	}
 	
 	public boolean isAtHomePage() {
-		return Constant.WEBDRIVER.findElement(centerWelcomeMessage).isDisplayed();
+		return Constant.WEBDRIVER.findElement(_lblWelcomeMessage).isDisplayed();
 	}
 	
 	public boolean isLinkCreateAccountDisplayed() {
