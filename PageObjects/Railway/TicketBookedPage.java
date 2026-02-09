@@ -2,13 +2,10 @@ package Railway;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
-import Common.Utilities;
 import Constant.Constant;
 
-public class BookTicketPage {
-	
+public class TicketBookedPage {
 	// Locators 
     private final By _dropdownDepartDate = By.xpath("//select[@name='Date']");
     private final By _dropdownDepartStation = By.xpath("//select[@name='DepartStation']");
@@ -43,19 +40,4 @@ public class BookTicketPage {
     }
     
     // Methods
-    public void bookTicket(String departDate, String departStation, String arrive, String seatType, String ticketAmount) {
-    		Utilities.selectByVisibleText(getDropdownDepartDate(), departDate);
-    		Utilities.selectByVisibleText(getDropdownDepartStation(), departStation);
-    		Utilities.waitForSelectOptionsChange(_dropdownArriveStation);
-    		Utilities.selectByVisibleText(getDropdownArriveStation(), arrive);
-    		Utilities.selectByVisibleText(getDropdownSeatType(), seatType);
-        Utilities.selectByVisibleText(getDropdownTicketAmount(), ticketAmount);
-        
-        Utilities.scrollAndClick(getBtnBookTicket());    
-    }
-    
-    public String getDepartDateFirstOption() {
-	    	return Utilities.getSelectFirstOption(getDropdownDepartDate());
-    }
-
 }

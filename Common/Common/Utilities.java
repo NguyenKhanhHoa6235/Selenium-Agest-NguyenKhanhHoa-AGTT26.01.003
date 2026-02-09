@@ -3,6 +3,7 @@ package Common;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -165,6 +166,31 @@ public class Utilities {
 		scrollToElement(locator);
 		Select select = new Select(findElement(locator));
 		select.selectByIndex(index);
+    }
+
+    
+    public static String getSelectFirstOption(WebElement element) {
+	    	Select select = new Select(element);
+	    	return select.getFirstSelectedOption().getText();
+	}
+    
+    public static void waitForSelectOptionsChange(By selectLocator) {
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+
+        Select select = new Select(Constant.WEBDRIVER.findElement(selectLocator));
+        List<String> oldOptions = select.getOptions()
+                .stream()
+                .map(WebElement::getText)
+                .toList();
+
+        wait.until(driver -> {
+            Select newSelect = new Select(driver.findElement(selectLocator));
+            List<String> newOptions = newSelect.getOptions()
+                    .stream()
+                    .map(WebElement::getText)
+                    .toList();
+            return !newOptions.equals(oldOptions);
+        });
     }
 
     

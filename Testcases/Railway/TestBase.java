@@ -83,4 +83,11 @@ public class TestBase {
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 	        return date.format(formatter);
 	    }
+	    
+	    public static String getAddDaysToDate(String date, int daysToAdd, String pattern) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+	        LocalDate localDate = LocalDate.parse(date, formatter);
+	        LocalDate newDate = localDate.plusDays(daysToAdd);
+	        return newDate.format(formatter);
+	    }
 }

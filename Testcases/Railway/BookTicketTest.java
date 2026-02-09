@@ -1,5 +1,7 @@
 package Railway;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,7 +17,7 @@ public class BookTicketTest extends TestBase {
     		//Data
         userAccount.setUsername(Constant.USERNAME);
         userAccount.setPassword(Constant.PASSWORD);
-        String departDate = getDatePlusDays(2);
+        
         String departStation = "Nha Trang";
         String arrive = "Huế";
         String seatType = "Soft bed with air conditioner";
@@ -43,21 +45,11 @@ public class BookTicketTest extends TestBase {
         System.out.println("8. Click on \"Book ticket\" button");
         
         BookTicketPage bookTicketPage = new BookTicketPage();
-        bookTicketPage.bookTicket(departDate, departStation, arrive, seatType, ticketAmount);
-        
-//        System.out.println("Verify: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
-        
+        String departDateCurrent = bookTicketPage.getDepartDateFirstOption();
+        String datePlusTwo = getAddDaysToDate(departDateCurrent, 2, "M/d/yyyy");
+   
+        bookTicketPage.bookTicket(datePlusTwo, departStation, arrive, seatType, ticketAmount);
         
 
-        
-//        Utilities.openToAndSwitchTag(Constant.RAIWAY_URL);
-
-//        
-//        FAQPage FAQPage = homePage.gotoFAQPage();
-//        HomePage homePageOut = homePage.gotoLogoutPage();
-//        
-//        Assert.assertTrue(homePageOut.isAtHomePage(),"The homepage is not displaying.");
-//        
-//        Assert.assertFalse(homePageOut.isTagLogOutDisplayed(),"Logout tab should not exist");       
     }
 }
