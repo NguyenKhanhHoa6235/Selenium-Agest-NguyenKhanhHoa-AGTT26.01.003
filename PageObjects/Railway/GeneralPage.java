@@ -27,7 +27,6 @@ public abstract class GeneralPage {
 	    return Constant.WEBDRIVER.findElement(_lblWelcomeMessage);
 	}
 	
-	
 	protected WebElement getTagFAQ() {
 	    return Constant.WEBDRIVER.findElement(_tabFAQ);
 	}
@@ -40,7 +39,6 @@ public abstract class GeneralPage {
 	    return Constant.WEBDRIVER.findElement(_tagBookTicket);
 	}
 	
-
 	// Methods
 	public String getWelcomeMessage() {
 
@@ -48,14 +46,11 @@ public abstract class GeneralPage {
 	}
 
     protected By getMenuItemLocator(MenuItem menu) {
-    		System.out.println(By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']"));
         return By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']");
     }
 	
     protected void gotoPage(MenuItem menu) {
-        Constant.WEBDRIVER
-                .findElement(getMenuItemLocator(menu))
-                .click();
+        Constant.WEBDRIVER.findElement(getMenuItemLocator(menu)).click();
     }
     
 	public LoginPage gotoLoginPage() {

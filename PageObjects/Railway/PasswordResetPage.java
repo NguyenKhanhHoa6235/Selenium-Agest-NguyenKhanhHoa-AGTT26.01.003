@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import Common.Utilities;
 import Constant.Constant;
 
-public class PasswordResetPage {
+public class PasswordResetPage extends GeneralPage{
 	// Locators 
     private final By _txtNewPassword = By.xpath("//input[@id='newPassword']");
     private final By _txtConfirmPassword = By.xpath("//input[@id='@confirmPassword']");

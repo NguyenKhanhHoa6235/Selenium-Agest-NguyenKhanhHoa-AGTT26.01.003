@@ -39,9 +39,7 @@ public class TestBase {
 	    return fullEmailAdrress;
 	}
 	
-	
-    public String registerWithEmailGuerrilla(String password, String pid)
-    {
+    public String registerWithEmailGuerrilla(String password, String pid) {
     		//tag 1: Railway + click on link "create an account"
 		HomePage homePage = new HomePage();
 	    homePage.open();
@@ -78,16 +76,16 @@ public class TestBase {
 	    return fullEmailAdrress;	    
     }
     
-	    public static String getDatePlusDays(int days) {
-	        LocalDate date = LocalDate.now().plusDays(days);
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-	        return date.format(formatter);
-	    }
-	    
-	    public static String getAddDaysToDate(String date, int daysToAdd, String pattern) {
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-	        LocalDate localDate = LocalDate.parse(date, formatter);
-	        LocalDate newDate = localDate.plusDays(daysToAdd);
-	        return newDate.format(formatter);
-	    }
+    public static String getDatePlusDays(int days) {
+        LocalDate date = LocalDate.now().plusDays(days);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return date.format(formatter);
+    }
+    
+    public static String getAddDaysToDate(String date, int daysToAdd, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        LocalDate newDate = localDate.plusDays(daysToAdd);
+        return newDate.format(formatter);
+    }
 }

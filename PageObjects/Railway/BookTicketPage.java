@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import Common.Utilities;
 import Constant.Constant;
 
-public class BookTicketPage {
+public class BookTicketPage extends GeneralPage{
 	
 	// Locators 
     private final By _dropdownDepartDate = By.xpath("//select[@name='Date']");
@@ -43,15 +43,18 @@ public class BookTicketPage {
     }
     
     // Methods
-    public void bookTicket(String departDate, String departStation, String arrive, String seatType, String ticketAmount) {
+    public TicketBookedPage bookTicket(String departDate, String departStation, String arrive, String seatType, String ticketAmount) {
     		Utilities.selectByVisibleText(getDropdownDepartDate(), departDate);
     		Utilities.selectByVisibleText(getDropdownDepartStation(), departStation);
+    		Utilities.waitForPresence(_dropdownArriveStation);
     		Utilities.waitForSelectOptionsChange(_dropdownArriveStation);
     		Utilities.selectByVisibleText(getDropdownArriveStation(), arrive);
     		Utilities.selectByVisibleText(getDropdownSeatType(), seatType);
         Utilities.selectByVisibleText(getDropdownTicketAmount(), ticketAmount);
         
         Utilities.scrollAndClick(getBtnBookTicket());    
+        
+        return new TicketBookedPage();
     }
     
     public String getDepartDateFirstOption() {

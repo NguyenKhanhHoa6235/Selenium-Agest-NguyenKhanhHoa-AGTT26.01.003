@@ -1,11 +1,9 @@
 package Railway;
 
-
 import org.testng.annotations.Test;
 import Class.User;
 import org.testng.Assert;
 import Constant.Constant;
-
 
 public class LoginTest extends TestBase {
 	User userAccount = new User();
@@ -15,17 +13,14 @@ public class LoginTest extends TestBase {
         System.out.println("TC01 - User can log into Railway with valid username and password");
 
         userAccount.setUsername(Constant.USERNAME);
-        userAccount.setPassword(Constant.PASSWORD);
-        
+        userAccount.setPassword(Constant.PASSWORD);       
         
         System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
-
-        
+      
         System.out.println("2. Click on \"Login\" tab");
         LoginPage loginPage = homePage.gotoLoginPage();
-
         
         System.out.println("3. Enter valid Email and Password");   
         System.out.println("4. Click on \"Login\" button");
@@ -33,6 +28,7 @@ public class LoginTest extends TestBase {
         String expectedMsg = "Welcome " + Constant.USERNAME;
 
         //Verify
+        System.out.println("Verify: User is logged into Railway. Welcome user message is displayed.");
         Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
     }
     
@@ -42,13 +38,11 @@ public class LoginTest extends TestBase {
         
         userAccount.setUsername("");
         userAccount.setPassword(Constant.PASSWORD);
-        
-        
+               
         System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
-
-        
+     
         System.out.println("2. Click on \"Login\" tab");
         System.out.println("3. User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox ");   
         System.out.println("4. Click on \"Login\" button");
@@ -56,6 +50,7 @@ public class LoginTest extends TestBase {
         loginPage.login(userAccount);
         
         //Verify
+        System.out.println("Verify: User can't login and message \"There was a problem with your login and/or errors exist in your form. \" appears.");
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
         
@@ -74,22 +69,20 @@ public class LoginTest extends TestBase {
         System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
-
         
         System.out.println("2. Click on \"Login\" tab");
         System.out.println("3. Enter valid Email and invalid Password");   
         System.out.println("4. Click on \"Login\" button");
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(userAccount);
-        
-        
+           
         //Verify
+        System.out.println("Verify: Error message \"There was a problem with your login and/or errors exist in your form.\" is displayed");
         String actualMsg = loginPage.getLoginErrorMsg();
         String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
         
         Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected"); 
         Assert.assertTrue(loginPage.isAtLoginPage());
-
     }
     
     
@@ -101,8 +94,7 @@ public class LoginTest extends TestBase {
         userAccount.setPassword("122546546");
         
         String expectedNormalMsg = "Invalid username or password. Please try again";
-        String expectedLimitMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
-        
+        String expectedLimitMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";      
         
         System.out.println("1. Navigate to QA Railway Website");
         System.out.println("2. Click on \"Login\" tab");
@@ -110,12 +102,12 @@ public class LoginTest extends TestBase {
         HomePage homePage = new HomePage();
         homePage.open();
         LoginPage loginPage = homePage.gotoLoginPage();
-        
-        
-        
+              
         System.out.println("3. Enter valid information into \"Username\" textbox except \"Password\" textbox.");   
         System.out.println("4. Click on \"Login\" button");
         System.out.println("5. Repeat step 3 and 4 three more times.");
+        System.out.println("Verify 1: \"Invalid username or password. Please try again\" is shown");
+        System.out.println("Verify 2: \"User can't login and message \"You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.\" appears.");
         
         String actualMsg;
         for(int i = 1; i <= 4; i++) 
@@ -133,9 +125,7 @@ public class LoginTest extends TestBase {
         		}
         		
         		Assert.assertTrue(loginPage.isAtLoginPage());
-        }
-        
-
+        }      
     }
     
     
@@ -152,20 +142,18 @@ public class LoginTest extends TestBase {
       homePage.open();
 
       LoginPage loginPage = homePage.gotoLoginPage();
-      
-      
+           
       System.out.println("3. Enter username and password of account hasn't been activated.");
       System.out.println("4. Click on \"Login\" button");
       loginPage.login(userAccount);
-      
-      
+          
       //Verify
+      System.out.println("Verify: User can't login and message \"Invalid username or password. Please try again.\" appears.");
       String actualMsg = loginPage.getLoginErrorMsg();
       String expectedMsg = "Invalid username or password. Please try again.";
       
       Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected"); 
       Assert.assertTrue(loginPage.isAtLoginPage(), "User should stay at Login page");
-
   }
   
 }

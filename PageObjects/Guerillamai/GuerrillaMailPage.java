@@ -76,7 +76,6 @@ public class GuerrillaMailPage {
 	    	Utilities.scrollAndClick(Utilities.waitForVisible(_firstMail));
 	    	Utilities.scrollToElement(_confirmationEmail);
 	    	Utilities.jsClick(_confirmationEmail);
-//	    	Utilities.scrollAndClick(_confirmationEmail);
 	    	System.out.println("hahaha");	
 	}
 }

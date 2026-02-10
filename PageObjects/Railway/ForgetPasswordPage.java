@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import Constant.Constant;
 
-public class ForgetPasswordPage {
+public class ForgetPasswordPage extends GeneralPage{
     // Locators 
     private final By _inputEmail = By.xpath("//input[@id='email']");
     private final By _btnSendInstructions = By.xpath("//input[@value='Send Instructions']");

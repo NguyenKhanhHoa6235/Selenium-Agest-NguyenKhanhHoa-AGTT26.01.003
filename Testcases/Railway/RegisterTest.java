@@ -35,21 +35,18 @@ public class RegisterTest extends TestBase{
         System.out.println("1. Navigate to QA Railway Website");
      
         Utilities.openToAndSwitchTag(Constant.RAIWAY_URL);
-        HomePage homePage = new HomePage();
-    
+        HomePage homePage = new HomePage(); 
         
         System.out.println("2. Click onRegister tab");
         
         LoginPage loginPage = homePage.gotoLoginPage();
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        
-        
+               
         System.out.println("3.Create account with an already in-use email");
         System.out.println("4.Click on Register button");
         
         registerPage.register(accountAlreadyExists, password, pid);
-      
-        
+              
         //Verify
         String actualMsg = registerPage.getRegisterErrorMsg(); 
         System.out.println("actualMsg: "+actualMsg);
@@ -72,12 +69,10 @@ public class RegisterTest extends TestBase{
         System.out.println("1. Navigate to QA Railway Website");
         HomePage homePage = new HomePage();
         homePage.open();
-
         
         System.out.println("2. Click on Register tab");
         RegisterPage registerPage = homePage.gotoRegisterPage();
-
-        
+      
         System.out.println("3. Enter valid email, leave other fields empty");
         System.out.println("4.Click on Register button");
         registerPage.register(fullEmailAdrress, password, pid);
@@ -88,13 +83,11 @@ public class RegisterTest extends TestBase{
         
         String actualErrorMsg = registerPage.getRegisterErrorMsg();
         String actualErrorPwdMsg = registerPage.getRegisterErrorPwdMsg();
-        String actualErrorPidMsg = registerPage.getRegisterErrorPidMsg();
-        
+        String actualErrorPidMsg = registerPage.getRegisterErrorPidMsg();       
 
         String expectedErrorMsg = "There're errors in the form. Please correct the errors and try again.";
         String expectedErrorPwdMsg = "Invalid password length.";
-        String expectedErrorPidMsg = "Invalid ID length.";
-        
+        String expectedErrorPidMsg = "Invalid ID length.";   
         
         Assert.assertEquals(actualErrorMsg, expectedErrorMsg, "Error message is not displayed as expected");
         Assert.assertEquals(actualErrorPwdMsg, expectedErrorPwdMsg, "Error password message is not displayed as expected");
@@ -123,14 +116,12 @@ public class RegisterTest extends TestBase{
         Assert.assertTrue(homePage.isAtHomePage());
         Assert.assertTrue(href.contains("/Account/Register.cshtml"),"Create an account link does not navigate to Register page"
         );
-        
-        
+             
         System.out.println("2. Click on \"Create an account\"");
         RegisterPage registerPage = homePage.ClicklinkCreateAccount();
 
         //Verify: Register page is shown
         Assert.assertTrue(registerPage.isAtFormRegister());
-
         
         //tag windown 2: GuerrillaMail + get email
         String guerrillaTag = Utilities.openNewTab();
@@ -140,8 +131,7 @@ public class RegisterTest extends TestBase{
         String emailName = Utilities.generateTimestampEmail();
         
         mailPage.setEmailName(emailName);
-        String fullEmailAdrress = mailPage.getCreatedEmail();
-              
+        String fullEmailAdrress = mailPage.getCreatedEmail();           
         
         // Back Railway + register
 	    Utilities.switchToWindow(railwayTab);
@@ -154,14 +144,12 @@ public class RegisterTest extends TestBase{
         String expectedThanksRegisterMsg = "Thank you for registering your account";
         
         Assert.assertEquals(actualThanksRegisterMsg, expectedThanksRegisterMsg, "Thanks register message is not displayed as expected");
-
         
 	    // back GuerrillaMail + confirmation email
         System.out.println("5. Get email information (webmail address, mailbox and password) and navigate to that webmail");
         System.out.println("6. Login to the mailbox");
         System.out.println("7. Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
-        System.out.println("8. Click on the activate link");
-        
+        System.out.println("8. Click on the activate link");       
 
 	    Utilities.switchToWindow(guerrillaTag);
 	    Utilities.removeAdsIframes();
@@ -179,7 +167,5 @@ public class RegisterTest extends TestBase{
         
         Assert.assertTrue(registerPage.isAtRegistrationConfirmedPage(),"No at RegistrationConfirmedPage");
         Assert.assertEquals(actualRegisterSuccessMsg, expectedRegisterSuccessMsg, "Registration Confirmed message is not displayed as expected");
-
     }
-
 }
