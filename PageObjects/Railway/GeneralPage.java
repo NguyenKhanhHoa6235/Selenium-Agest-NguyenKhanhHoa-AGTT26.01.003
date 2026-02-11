@@ -53,6 +53,17 @@ public abstract class GeneralPage {
         Constant.WEBDRIVER.findElement(getMenuItemLocator(menu)).click();
     }
     
+    protected <T> T gotoPage(MenuItem menu, Class<T> pageClass) {
+
+        Constant.WEBDRIVER.findElement(getMenuItemLocator(menu)).click();
+
+        try {
+            return pageClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot create page instance: " + pageClass.getSimpleName(), e);
+        }
+    }
+    
 	public LoginPage gotoLoginPage() {
 	    this.getTabLogin().click();
 	    return new LoginPage();

@@ -9,11 +9,15 @@ import java.util.Map;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import Class.BookTicket;
+import Class.User;
 import Common.Utilities;
 import Constant.Constant;
+import Constant.MenuItem;
 import Guerillamai.GuerrillaMailPage;
 
 public class TestBase {
@@ -89,6 +93,35 @@ public class TestBase {
         LocalDate localDate = LocalDate.parse(date, formatter);
         LocalDate newDate = localDate.plusDays(daysToAdd);
         return newDate.format(formatter);
+    }
+    
+    public static void handleLogin(User userAccount) {
+    		HomePage homePage = new HomePage();
+        homePage.open();
+        Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
+        loginPage.login(userAccount);
+    }
+    
+    public static TicketBookedPage handleBookTicket(User userAccount, BookTicket bookTicket) {  
+        HomePage homePage = new HomePage();
+        homePage.open();
+        Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
+        loginPage.login(userAccount);
+        
+        homePage.gotoPage(MenuItem.BOOK_TICKET);
+        
+        BookTicketPage bookTicketPage = new BookTicketPage();
+        TicketBookedPage ticketBookedPage = bookTicketPage.bookTicket(
+        		bookTicket.getDepartDate(), 
+        		bookTicket.getDepartStation(), 
+        		bookTicket.getArrive(), 
+        		bookTicket.getSeatType(), 
+        		bookTicket.getTicketAmount()
+        	);
+        
+        return ticketBookedPage;
     }
 
 }

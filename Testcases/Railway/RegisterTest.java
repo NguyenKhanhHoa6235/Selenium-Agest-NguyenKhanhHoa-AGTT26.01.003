@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import Class.User;
 import Common.Utilities;
 import Constant.Constant;
+import Constant.MenuItem;
 import Guerillamai.GuerrillaMailPage;
 
 
@@ -39,8 +40,8 @@ public class RegisterTest extends TestBase{
         
         System.out.println("2. Click onRegister tab");
         
-        LoginPage loginPage = homePage.gotoLoginPage();
-        RegisterPage registerPage = homePage.gotoRegisterPage();
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
+        RegisterPage registerPage = homePage.gotoPage(MenuItem.REGISTER, RegisterPage.class);
                
         System.out.println("3.Create account with an already in-use email");
         System.out.println("4.Click on Register button");
@@ -71,13 +72,12 @@ public class RegisterTest extends TestBase{
         homePage.open();
         
         System.out.println("2. Click on Register tab");
-        RegisterPage registerPage = homePage.gotoRegisterPage();
+        RegisterPage registerPage = homePage.gotoPage(MenuItem.REGISTER, RegisterPage.class);;
       
         System.out.println("3. Enter valid email, leave other fields empty");
         System.out.println("4.Click on Register button");
         registerPage.register(fullEmailAdrress, password, pid);
-    	
-        
+    	     
         //Verify
         Assert.assertTrue(registerPage.isAtFormRegister());
         

@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.Constant;
+import Constant.MenuItem;
 import Guerillamai.GuerrillaMailPage;
 
 public class ResetPasswordTest extends TestBase {
@@ -25,7 +26,7 @@ public class ResetPasswordTest extends TestBase {
 	    	System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
 		homePage.open();
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
 	         
 	    	System.out.println("2. Click on \"Forgot Password page\" link");
 	    	loginPage.clickForgotPassword();
@@ -83,7 +84,7 @@ public class ResetPasswordTest extends TestBase {
 	    	System.out.println("1. Navigate to QA Railway Login page");
 		HomePage homePage = new HomePage();
 		homePage.open();
-		LoginPage loginPage = homePage.gotoLoginPage();
+		LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
 	         
 	    	System.out.println("2. Click on \"Forgot Password page\" link");
 	    	loginPage.clickForgotPassword();

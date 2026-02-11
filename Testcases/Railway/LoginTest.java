@@ -2,8 +2,12 @@ package Railway;
 
 import org.testng.annotations.Test;
 import Class.User;
+
+import java.awt.Menu;
+
 import org.testng.Assert;
 import Constant.Constant;
+import Constant.MenuItem;
 
 public class LoginTest extends TestBase {
 	User userAccount = new User();
@@ -20,7 +24,7 @@ public class LoginTest extends TestBase {
         homePage.open();
       
         System.out.println("2. Click on \"Login\" tab");
-        LoginPage loginPage = homePage.gotoLoginPage();
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         
         System.out.println("3. Enter valid Email and Password");   
         System.out.println("4. Click on \"Login\" button");
@@ -46,7 +50,7 @@ public class LoginTest extends TestBase {
         System.out.println("2. Click on \"Login\" tab");
         System.out.println("3. User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox ");   
         System.out.println("4. Click on \"Login\" button");
-        LoginPage loginPage = homePage.gotoLoginPage();
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         loginPage.login(userAccount);
         
         //Verify
@@ -73,7 +77,7 @@ public class LoginTest extends TestBase {
         System.out.println("2. Click on \"Login\" tab");
         System.out.println("3. Enter valid Email and invalid Password");   
         System.out.println("4. Click on \"Login\" button");
-        LoginPage loginPage = homePage.gotoLoginPage();
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         loginPage.login(userAccount);
            
         //Verify
@@ -101,7 +105,7 @@ public class LoginTest extends TestBase {
         
         HomePage homePage = new HomePage();
         homePage.open();
-        LoginPage loginPage = homePage.gotoLoginPage();
+        LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
               
         System.out.println("3. Enter valid information into \"Username\" textbox except \"Password\" textbox.");   
         System.out.println("4. Click on \"Login\" button");
@@ -141,7 +145,7 @@ public class LoginTest extends TestBase {
       HomePage homePage = new HomePage();
       homePage.open();
 
-      LoginPage loginPage = homePage.gotoLoginPage();
+      LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
            
       System.out.println("3. Enter username and password of account hasn't been activated.");
       System.out.println("4. Click on \"Login\" button");
