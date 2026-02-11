@@ -39,5 +39,35 @@ public class TimetablePage extends GeneralPage{
 		Utilities.waitForVisible(_ticketTable);	
 		return Utilities.convertRowsToMap(getRows(), getHeaders());
     }
+    
+    public TicketPrice clickCheckPrice(String departStation, String arriveStation){
+	    	By _linkCheckPrice = By.xpath(
+	    		    "//table//tr[" +
+	    		    "td[normalize-space()='" + departStation + "']" +
+	    		    "/following-sibling::td[normalize-space()='" + arriveStation + "']" +
+	    		"]//a[normalize-space()='check price']"
+
+	    		);
+	    	Utilities.scrollToBottomPage();
+    		WebElement checkPrice = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_linkCheckPrice));
+    		checkPrice.click();
+    		
+    		return new TicketPrice();
+    }
+    
+    public BookTicketPage clickBookTicket(String departStation, String arriveStation){
+    	By _linkCheckPrice = By.xpath(
+    			"//table//tr[" +
+    			"td[normalize-space()='" + departStation + "']" +
+    			"/following-sibling::td[normalize-space()='" + arriveStation + "']" +
+    			"]//a[normalize-space()='book ticket']"
+
+    		);
+    		Utilities.scrollToBottomPage();
+		WebElement checkPrice = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_linkCheckPrice));
+		checkPrice.click();
+		
+		return new BookTicketPage();
+}
 
 }

@@ -6,7 +6,7 @@
       <class name="Railway.BookTicketTest">
         <methods>
           <include name="beforeMethod"/>
-          <include name="TC013"/>
+          <include name="TC015"/>
           <include name="afterMethod"/>
         </methods>
       </class> <!-- Railway.BookTicketTest -->

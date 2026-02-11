@@ -19,35 +19,38 @@ public class BookTicketPage extends GeneralPage{
     
     // Elements
     public WebElement getDropdownDepartDate() {
-        return Constant.WEBDRIVER.findElement(_dropdownDepartDate);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_dropdownDepartDate));
+        
     }
 
     public WebElement getDropdownDepartStation () {
-        return Constant.WEBDRIVER.findElement(_dropdownDepartStation);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_dropdownDepartStation));
     }
 
     public WebElement getDropdownArriveStation() {
-        return Constant.WEBDRIVER.findElement(_dropdownArriveStation);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_dropdownArriveStation));
     }
 
     public WebElement getDropdownSeatType() {
-        return Constant.WEBDRIVER.findElement(_dropdownSeatType);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_dropdownSeatType));
     }
 
     public WebElement getDropdownTicketAmount() {
-        return Constant.WEBDRIVER.findElement(_dropdownTicketAmount);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_dropdownTicketAmount));
     }
     
     public WebElement getBtnBookTicket() {
-        return Constant.WEBDRIVER.findElement(_btnBookTicket);
+        return Constant.WEBDRIVER.findElement(Utilities.waitForPresence(_btnBookTicket));
     }
     
     // Methods
     public TicketBookedPage bookTicket(String departDate, String departStation, String arrive, String seatType, String ticketAmount) {
     		Utilities.selectByVisibleText(getDropdownDepartDate(), departDate);
     		Utilities.selectByVisibleText(getDropdownDepartStation(), departStation);
-    		Utilities.waitForPresence(_dropdownArriveStation);
-    		Utilities.waitForSelectOptionsChange(_dropdownArriveStation);
+    		if(departStation != null) {
+        		Utilities.waitForPresence(_dropdownArriveStation);
+        		Utilities.waitForSelectOptionsChange(_dropdownArriveStation);
+    		}
     		Utilities.selectByVisibleText(getDropdownArriveStation(), arrive);
     		Utilities.selectByVisibleText(getDropdownSeatType(), seatType);
         Utilities.selectByVisibleText(getDropdownTicketAmount(), ticketAmount);
@@ -59,6 +62,14 @@ public class BookTicketPage extends GeneralPage{
     
     public String getDepartDateFirstOption() {
 	    	return Utilities.getSelectFirstOption(getDropdownDepartDate());
+    }
+    
+    public String getDepartStationSelectedOption() {
+    		return Utilities.getSelectFirstOption(getDropdownDepartStation());
+    }
+    
+    public String getArriveStationSelectedOption() {
+    		return Utilities.getSelectFirstOption(getDropdownArriveStation());
     }
 
 }

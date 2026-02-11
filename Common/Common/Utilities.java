@@ -166,6 +166,10 @@ public class Utilities {
     
     //SELECT
     public static void selectByVisibleText(WebElement element, String text){
+        if (text == null || text.isBlank()) {
+        	System.out.println("Bỏ Qua Null: ");
+            return;
+        }
 		scrollToElement(element);
 		Select select = new Select(element);
 		select.selectByVisibleText(text);
@@ -206,7 +210,6 @@ public class Utilities {
             return !newOptions.equals(oldOptions);
         });
     }
-
     
     //HANDLE TABLE  
     public static List<Map<String, String>> convertRowsToMap(List<WebElement> rows, List<WebElement> headers) {
@@ -233,7 +236,11 @@ public class Utilities {
     }
     
     public static void printTable(List<Map<String, String>> table) {
-        System.out.println("PRINT TABLE: ");
+        	System.out.println("PRINT TABLE: ");
+	    if (table== null || table.isEmpty()) {
+			System.out.println("Table is empty");
+			return;
+	    }
         int rowIndex = 0;
         for (Map<String, String> row : table) {
             System.out.println("Row " + rowIndex++);

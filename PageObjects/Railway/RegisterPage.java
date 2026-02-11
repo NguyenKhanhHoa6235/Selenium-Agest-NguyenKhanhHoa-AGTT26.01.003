@@ -70,7 +70,6 @@ public class RegisterPage extends GeneralPage{
     		Utilities.scrollAndClick(getBtnRegister());   		
     }
     
-    
 	public String getThanksRegisterAccountMsg() {
 	    return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblThanksRegisterAccountMsg)).getText();
 	}
