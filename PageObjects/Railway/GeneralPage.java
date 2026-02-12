@@ -48,10 +48,6 @@ public abstract class GeneralPage {
     protected By getMenuItemLocator(MenuItem menu) {
         return By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']");
     }
-	
-    protected void gotoPage(MenuItem menu) {
-        Constant.WEBDRIVER.findElement(getMenuItemLocator(menu)).click();
-    }
     
     protected <T> T gotoPage(MenuItem menu, Class<T> pageClass) {
 
@@ -64,32 +60,7 @@ public abstract class GeneralPage {
         }
     }
     
-	public LoginPage gotoLoginPage() {
-	    this.getTabLogin().click();
-	    return new LoginPage();
-	}
-	
-	public HomePage gotoLogoutPage() {
-	    this.getTabLogout().click();
-	    return new HomePage();
-	}
-	
-	public BookTicketPage gotoBookTicketPage() {
-	    this.getTagBookTicket().click();
-	    return new BookTicketPage();
-	}
-	
 	public boolean isTagLogOutDisplayed() {
 		return Constant.WEBDRIVER.findElements(_tabLogout).size() > 0;
-	}
-	
-	public FAQPage gotoFAQPage() {
-	    this.getTagFAQ().click();
-	    return new FAQPage();
-	}
-	
-	public RegisterPage gotoRegisterPage() {
-	    this.getTagRegister().click();
-	    return new RegisterPage();
 	}
 }

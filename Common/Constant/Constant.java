@@ -9,5 +9,4 @@ public class Constant {
 	public static final String PASSWORD ="12345678";
 	public static final String GUERRILLA_URL ="https://www.guerrillamail.com/inbox";
 	public static final int TIMEOUT = 30;
-	
 }

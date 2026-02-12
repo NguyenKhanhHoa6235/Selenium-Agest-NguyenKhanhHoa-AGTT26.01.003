@@ -34,7 +34,7 @@ public class CancelBookingTest extends TestBase{
         TicketBookedPage ticketBookedPage = handleBookTicket(userAccount, bookTicket);
         
         System.out.println("4. Click on \"My ticket\" tab");
-        ticketBookedPage.gotoPage(MenuItem.MY_TICKET);
+        MyTicketPage myTicketPage = ticketBookedPage.gotoPage(MenuItem.MY_TICKET, MyTicketPage.class);
         
         System.out.println("5. Click on \"Cancel\" button of ticket which user want to cancel.");
         System.out.println("6. Click on \"OK\" button on Confirmation message \"Are you sure?\"");

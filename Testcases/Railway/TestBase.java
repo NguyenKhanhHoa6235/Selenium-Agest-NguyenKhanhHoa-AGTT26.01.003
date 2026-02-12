@@ -110,9 +110,8 @@ public class TestBase {
         LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         loginPage.login(userAccount);
         
-        homePage.gotoPage(MenuItem.BOOK_TICKET);
-        
-        BookTicketPage bookTicketPage = new BookTicketPage();
+        BookTicketPage bookTicketPage = homePage.gotoPage(MenuItem.BOOK_TICKET, BookTicketPage.class);
+
         TicketBookedPage ticketBookedPage = bookTicketPage.bookTicket(
         		bookTicket.getDepartDate(), 
         		bookTicket.getDepartStation(), 

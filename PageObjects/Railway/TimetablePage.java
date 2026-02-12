@@ -47,7 +47,7 @@ public class TimetablePage extends GeneralPage{
 	    		    "/following-sibling::td[normalize-space()='" + arriveStation + "']" +
 	    		"]//a[normalize-space()='check price']"
 
-	    		);
+	    			);
 	    	Utilities.scrollToBottomPage();
     		WebElement checkPrice = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_linkCheckPrice));
     		checkPrice.click();
@@ -56,18 +56,17 @@ public class TimetablePage extends GeneralPage{
     }
     
     public BookTicketPage clickBookTicket(String departStation, String arriveStation){
-    	By _linkCheckPrice = By.xpath(
-    			"//table//tr[" +
-    			"td[normalize-space()='" + departStation + "']" +
-    			"/following-sibling::td[normalize-space()='" + arriveStation + "']" +
-    			"]//a[normalize-space()='book ticket']"
-
-    		);
+	    	By _linkCheckPrice = By.xpath(
+	    			"//table//tr[" +
+	    			"td[normalize-space()='" + departStation + "']" +
+	    			"/following-sibling::td[normalize-space()='" + arriveStation + "']" +
+	    			"]//a[normalize-space()='book ticket']"
+	    			);
     		Utilities.scrollToBottomPage();
 		WebElement checkPrice = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_linkCheckPrice));
 		checkPrice.click();
 		
 		return new BookTicketPage();
-}
+    }
 
 }
