@@ -137,10 +137,7 @@ public class BookTicketTest extends TestBase {
         
         List<Map<String, String>> tableTicketBooked = ticketBookedPage.getTableTicketBooked();
 //        Utilities.printTable(tableTicketBooked); 
-        Assert.assertFalse(
-        		tableTicketBooked.isEmpty(),
-        	    "Ticket list is empty after booking"
-        	);
+        Assert.assertFalse(tableTicketBooked.isEmpty(),"Ticket list is empty after booking");
         Map<String, String> expected = new LinkedHashMap<>();
         expected.put("Depart Date", datePlus);
         expected.put("Depart Station", bookTicket.getDepartStation());

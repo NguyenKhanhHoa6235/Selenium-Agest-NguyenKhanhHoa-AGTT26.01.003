@@ -1,10 +1,18 @@
 package Railway;
 
+import static org.testng.Assert.assertTrue;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Class.BookTicket;
 import Class.User;
+import Common.Utilities;
+import Constant.Constant;
 import Constant.MenuItem;
 import Constant.SeaTypeTicket;
 import Constant.StationTicket;
@@ -15,9 +23,10 @@ public class CancelBookingTest extends TestBase{
 	
 	@Test
     public void TC016() {
+		Constant.WEBDRIVER.manage().window().maximize();
 		//Data
-        userAccount.setUsername("nguyenvan@sharklasers.com");
-        userAccount.setPassword("14725836");
+        userAccount.setUsername("Shiba@sharklasers.com");
+        userAccount.setPassword("74185296");
         
         bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
         bookTicket.setArrive(StationTicket.HUE.getDisplayText());
@@ -36,10 +45,26 @@ public class CancelBookingTest extends TestBase{
         System.out.println("4. Click on \"My ticket\" tab");
         MyTicketPage myTicketPage = ticketBookedPage.gotoPage(MenuItem.MY_TICKET, MyTicketPage.class);
         
-        System.out.println("5. Click on \"Cancel\" button of ticket which user want to cancel.");
-        System.out.println("6. Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-        System.out.println("Verify: The canceled ticket is disappeared.");
+        List<Map<String, String>> tableManageTicket= myTicketPage.getTableManageTicket();
+//      Utilities.printTable(tableTicketBooked);
+	    Assert.assertFalse(tableManageTicket.isEmpty(),"Ticket list is empty after booking");
         
-    }
-
+        System.out.println("5. Click on \"Cancel\" button of ticket which user want to cancel.");
+        String today = getToday();
+        myTicketPage.clickCancelButton(today, bookTicket);
+        
+        System.out.println("6. Click on \"OK\" button on Confirmation message \"Are you sure?\"");
+        Utilities.waitAlertAndAccept();
+        Utilities.reload();
+        
+        System.out.println("Verify: The canceled ticket is disappeared.");
+	    Map<String, String> expected = new LinkedHashMap<>();
+	    expected.put("Book Date", today);
+	    expected.put("Depart Station", bookTicket.getDepartStation());
+	    expected.put("Arrive Station", bookTicket.getArrive());
+	    expected.put("Seat Type", bookTicket.getSeatType());
+	    expected.put("Amount", bookTicket.getTicketAmount());
+	      
+	    assertTrue(Utilities.isRowExistInTable(tableManageTicket, expected), "Verify fail: Ticket information does not match expected data");        
+	}
 }

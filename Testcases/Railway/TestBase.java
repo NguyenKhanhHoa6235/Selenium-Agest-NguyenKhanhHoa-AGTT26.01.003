@@ -6,12 +6,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
+import org.openqa.selenium.bidi.module.Browser;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import Class.BookTicket;
 import Class.User;
@@ -21,11 +27,24 @@ import Constant.MenuItem;
 import Guerillamai.GuerrillaMailPage;
 
 public class TestBase {
+	
+	@Parameters("browser")
 	@BeforeMethod
-    public void beforeMethod() {
-        System.out.println("Pre-condition");      
-        Constant.WEBDRIVER = new ChromeDriver();
-        Constant.WEBDRIVER.manage().window();      
+    public void beforeMethod(@Optional("chrome") String Browser) {
+        System.out.println("Pre-condition");   
+        String runBrowser = System.getProperty("browser", Browser);
+        
+        if("chrome".equalsIgnoreCase(runBrowser)) {
+        		Constant.WEBDRIVER = new ChromeDriver();
+        }
+        else if("firefox".equalsIgnoreCase(runBrowser)) {
+        		Constant.WEBDRIVER = new FirefoxDriver();
+        }
+        else {
+        		throw new RuntimeException("Unsupported browser: " + runBrowser);
+        }
+        
+        Constant.WEBDRIVER.manage().window().maximize();      
     }
 	
 	@AfterMethod
@@ -84,7 +103,13 @@ public class TestBase {
     
     public static String getDatePlusDays(int days) {
         LocalDate date = LocalDate.now().plusDays(days);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        return date.format(formatter);
+    }
+    
+    public static String getToday() {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return date.format(formatter);
     }
     

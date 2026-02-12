@@ -112,7 +112,7 @@ public class Utilities {
     
     
     //ALERT 
-    public static void waitAlertAndAccept(By locator) {
+    public static void waitAlertAndAccept() {
     		WebDriverWait wait = new WebDriverWait(
     	        Constant.WEBDRIVER,
     	        Duration.ofSeconds(Constant.TIMEOUT)
@@ -123,7 +123,7 @@ public class Utilities {
 	    	Constant.WEBDRIVER.switchTo().alert().accept();
     }
     
-    public static void waitAlertAndDismiss(By locator) {
+    public static void waitAlertAndDismiss() {
     		WebDriverWait wait = new WebDriverWait(
     	        Constant.WEBDRIVER,
     	        Duration.ofSeconds(Constant.TIMEOUT)

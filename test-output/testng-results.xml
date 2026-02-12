@@ -2,51 +2,39 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-11T15:56:56 GMT+07:00" name="Default suite" finished-at="2026-02-11T15:57:07 GMT+07:00" duration-ms="11843">
+  <suite started-at="2026-02-12T11:54:52 GMT+07:00" name="Default suite" finished-at="2026-02-12T11:55:41 GMT+07:00" duration-ms="49076">
     <groups>
     </groups>
-    <test started-at="2026-02-11T15:56:56 GMT+07:00" name="Default test" finished-at="2026-02-11T15:57:07 GMT+07:00" duration-ms="11843">
+    <test started-at="2026-02-12T11:54:52 GMT+07:00" name="Default test" finished-at="2026-02-12T11:55:41 GMT+07:00" duration-ms="49076">
       <class name="Railway.CancelBookingTest">
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CancelBookingTest@3bb9a3ff]" started-at="2026-02-11T15:56:56 GMT+07:00" name="beforeMethod" finished-at="2026-02-11T15:56:58 GMT+07:00" duration-ms="2862" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.CancelBookingTest@5af3afd9]" started-at="2026-02-12T11:54:52 GMT+07:00" name="beforeMethod" finished-at="2026-02-12T11:54:54 GMT+07:00" duration-ms="2251" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC016()[pri:0, instance:Railway.CancelBookingTest@3bb9a3ff]" started-at="2026-02-11T15:56:58 GMT+07:00" name="TC016" finished-at="2026-02-11T15:57:07 GMT+07:00" duration-ms="8900" status="FAIL">
-          <exception class="org.openqa.selenium.StaleElementReferenceException">
+        <test-method signature="TC016()[pri:0, instance:Railway.CancelBookingTest@5af3afd9]" started-at="2026-02-12T11:54:54 GMT+07:00" name="TC016" finished-at="2026-02-12T11:55:41 GMT+07:00" duration-ms="46763" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[stale element reference: stale element not found
-  (Session info: chrome=144.0.7559.133)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+              <![CDATA[Expected condition failed: waiting for presence of element found by By.xpath: //table//tr[td[normalize-space()='Nha Trang']/following-sibling::td[normalize-space()='Huế'] and td[normalize-space()='Soft seat with air conditioner'] and td[normalize-space()='02/12/2026'] and td[normalize-space()='1']]//input[@value='Cancel']
+(tried for 30 seconds with 500 milliseconds interval)
 Build info: version: '4.40.0', revision: 'b3333f1'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [20648f14816638a090e26564a627ec19, clickElement {id=f.86EAA237D7D22DDDEF3C4169D80F63DC.d.38EB89F75CE3CB24544A2625F1C601F4.e.85}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55097}, goog:processID: 26820, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55097/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (20648f14816638a090e26564a627ec19)] -> xpath: //div[@id='menu']//span[text()='My ticket']]
-Session ID: 20648f14816638a090e26564a627ec19]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57894}, goog:processID: 18352, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57894/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 82653a92a8e82e876594ff91583984c9]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found
-  (Session info: chrome=144.0.7559.133)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element found by By.xpath: //table//tr[td[normalize-space()='Nha Trang']/following-sibling::td[normalize-space()='Huế'] and td[normalize-space()='Soft seat with air conditioner'] and td[normalize-space()='02/12/2026'] and td[normalize-space()='1']]//input[@value='Cancel']
+(tried for 30 seconds with 500 milliseconds interval)
 Build info: version: '4.40.0', revision: 'b3333f1'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [20648f14816638a090e26564a627ec19, clickElement {id=f.86EAA237D7D22DDDEF3C4169D80F63DC.d.38EB89F75CE3CB24544A2625F1C601F4.e.85}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55097}, goog:processID: 26820, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55097/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (20648f14816638a090e26564a627ec19)] -> xpath: //div[@id='menu']//span[text()='My ticket']]
-Session ID: 20648f14816638a090e26564a627ec19
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
-at Railway.GeneralPage.gotoPage(GeneralPage.java:53)
-at Railway.CancelBookingTest.TC016(CancelBookingTest.java:37)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57894}, goog:processID: 18352, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57894/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 82653a92a8e82e876594ff91583984c9
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at Common.Utilities.scrollToElement(Utilities.java:140)
+at Railway.MyTicketPage.clickCancelButton(MyTicketPage.java:72)
+at Railway.CancelBookingTest.TC016(CancelBookingTest.java:54)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -75,11 +63,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC016 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CancelBookingTest@3bb9a3ff]" started-at="2026-02-11T15:57:07 GMT+07:00" name="afterMethod" finished-at="2026-02-11T15:57:07 GMT+07:00" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CancelBookingTest@5af3afd9]" started-at="2026-02-12T11:55:41 GMT+07:00" name="afterMethod" finished-at="2026-02-12T11:55:41 GMT+07:00" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
