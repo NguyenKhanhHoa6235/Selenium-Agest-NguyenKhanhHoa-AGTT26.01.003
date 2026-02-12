@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Constant.Constant;
+import Constant.StationTicket;
 
 public class Utilities {
 
@@ -181,6 +182,10 @@ public class Utilities {
 		select.selectByVisibleText(text);
     }
     
+    public static void selectByVisibleText(By locator, StationTicket station) {
+        selectByVisibleText(locator, station.getDisplayText());
+    }
+    
     public static void selectByIndex(By locator, int index){
 		scrollToElement(locator);
 		Select select = new Select(findElement(locator));
@@ -304,15 +309,4 @@ public class Utilities {
             System.out.println("Not fount Ads");
         }
     }
-    
-    public static void dismissAlertIfPresent() {
-        try {
-            Alert alert = Constant.WEBDRIVER.switchTo().alert();
-            alert.dismiss();
-        } catch (NoAlertPresentException e) {
-            System.out.println("No alert present. Continue test...");
-        }
-    }
-    
-
 }

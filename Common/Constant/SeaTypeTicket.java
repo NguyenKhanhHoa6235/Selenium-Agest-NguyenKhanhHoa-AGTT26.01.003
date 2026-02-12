@@ -2,12 +2,12 @@ package Constant;
 
 public enum SeaTypeTicket {
 
-    HOME("Hard seat"),
-    CONTACT("Soft seat"),
-    TIMETABLE("Soft seat with air conditioner"),
-    TICKET_PRICE("Hard bed"),
-    BOOK_TICKET("Soft bed"),
-    MY_TICKET("Soft bed with air conditioner");
+    HARD_SEAT("Hard seat"),
+    SOFT_SEAT("Soft seat"),
+    SOFT_SEAT_WITH_AIR_CONDITIONER("Soft seat with air conditioner"),
+    HARD_BED("Hard bed"),
+    SOFT_BED("Soft bed"),
+    SOFT_BED_WITH_AIR_CONDITIONER("Soft bed with air conditioner");
 
     private final String displayText;
 

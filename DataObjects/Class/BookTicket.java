@@ -14,6 +14,7 @@ public class BookTicket {
 		this.seatType = seatType;
 		this.ticketAmount = ticketAmount;
 	}
+	
 	public BookTicket() {
 	}
 	 

@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import Class.BookTicket;
 import Class.User;
 import Constant.MenuItem;
+import Constant.SeaTypeTicket;
+import Constant.StationTicket;
 
 public class CancelBookingTest extends TestBase{
 	User userAccount = new User();
@@ -17,11 +19,10 @@ public class CancelBookingTest extends TestBase{
         userAccount.setUsername("nguyenvan@sharklasers.com");
         userAccount.setPassword("14725836");
         
-        bookTicket.setDepartStation(null);
-        bookTicket.setDepartStation("Nha Trang");
-        bookTicket.setArrive("Huế");
-        bookTicket.setSeatType("Soft bed with air conditioner");
-        bookTicket.setTicketAmount("1");
+        bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
+        bookTicket.setArrive(StationTicket.HUE.getDisplayText());
+        bookTicket.setSeatType(SeaTypeTicket.SOFT_SEAT_WITH_AIR_CONDITIONER.getDisplayText());
+        bookTicket.setTicketAmount("1"); 
 		
         System.out.println("TC016 - User can cancel a ticket");
         

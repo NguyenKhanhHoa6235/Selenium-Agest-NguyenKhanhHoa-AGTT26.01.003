@@ -13,6 +13,8 @@ import Class.BookTicket;
 import Class.User;
 import Common.Utilities;
 import Constant.MenuItem;
+import Constant.SeaTypeTicket;
+import Constant.StationTicket;
 
 public class BookTicketTest extends TestBase {
 	User userAccount = new User();
@@ -24,9 +26,9 @@ public class BookTicketTest extends TestBase {
         userAccount.setUsername("nguyenvan@sharklasers.com");
         userAccount.setPassword("14725836");
         
-        bookTicket.setDepartStation("Nha Trang");
-        bookTicket.setArrive("Huế");
-        bookTicket.setSeatType("Soft bed with air conditioner");
+        bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
+        bookTicket.setArrive(StationTicket.HUE.getDisplayText());
+        bookTicket.setSeatType(SeaTypeTicket.SOFT_BED_WITH_AIR_CONDITIONER.getDisplayText());
         bookTicket.setTicketAmount("1");
         
         System.out.println("TC012 - User can book 1 ticket at a time");
@@ -92,10 +94,10 @@ public class BookTicketTest extends TestBase {
         userAccount.setUsername("nguyenvan@sharklasers.com");
         userAccount.setPassword("14725836");
         
-        bookTicket.setDepartStation("Nha Trang");
-        bookTicket.setArrive("Sài Gòn");
-        bookTicket.setSeatType("Soft seat with air conditioner");
-        bookTicket.setTicketAmount("5");
+        bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
+        bookTicket.setArrive(StationTicket.SAIGON.getDisplayText());
+        bookTicket.setSeatType(SeaTypeTicket.SOFT_SEAT_WITH_AIR_CONDITIONER.getDisplayText());
+        bookTicket.setTicketAmount("5");     
                
         System.out.println("TC06 - User can book many tickets at a time");
         
@@ -178,7 +180,7 @@ public class BookTicketTest extends TestBase {
         
         System.out.println("4. Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\"");
         TimetablePage timetablePage =  new TimetablePage();
-        TicketPrice ticketPrice = timetablePage.clickCheckPrice("Đà Nẵng", "Sài Gòn");
+        TicketPrice ticketPrice = timetablePage.clickCheckPrice(StationTicket.DANANG.getDisplayText(), StationTicket.SAIGON.getDisplayText());
         
         //Verify
         System.out.println("\"Ticket Price\" page is loaded.\r\n"
@@ -209,8 +211,8 @@ public class BookTicketTest extends TestBase {
         bookTicket.setSeatType(null);
         bookTicket.setTicketAmount("5");
         
-        String expectedDepartStation = "Quảng Ngãi";
-        String expectedArrive = "Huế";
+        String expectedDepartStation = StationTicket.QUANGNGAI.getDisplayText();
+        String expectedArrive = StationTicket.HUE.getDisplayText();
    
         System.out.println("TC015 - User can book ticket from Timetable");
         
