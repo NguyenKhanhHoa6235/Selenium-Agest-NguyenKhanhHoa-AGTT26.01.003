@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.Constant;
-import Guerillamai.GuerrillaMailPage;
 
 public class RegisterPage extends GeneralPage{
     // Locators 
@@ -32,7 +31,6 @@ public class RegisterPage extends GeneralPage{
     public WebElement getTxtConfirmPassword() {
         return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
     }
-
     
     public WebElement getTxtPidOrPassportNumber() {
         return Constant.WEBDRIVER.findElement(_txtPidOrPassportNumber);
@@ -56,8 +54,7 @@ public class RegisterPage extends GeneralPage{
     
     public WebElement getlblRegisterErrorPidMsg() {
         return Constant.WEBDRIVER.findElement(_lblRegisterErrorPidMsg);
-    }
-    
+    }   
     
     //Method
     public void register(String email, String password, String pid)
@@ -79,28 +76,22 @@ public class RegisterPage extends GeneralPage{
 	}
 	    
 	public String getRegisterErrorMsg() {
-
 	    return this.getlblRegisterErrorMsg().getText();
 	}
 	
 	public String getRegisterErrorPwdMsg() {
-
 	    return this.getlblRegisterErrorPwdMsg().getText();
 	}
-
 	
 	public String getRegisterErrorPidMsg() {
-
 	    return this.getlblRegisterErrorPidMsg().getText();
 	}
 	
-
 	public boolean isAtFormRegister() {
 		return Constant.WEBDRIVER.getTitle().contains("Register an Account");
 	}
 	
 	public boolean isAtRegistrationConfirmedPage() {
 		return Constant.WEBDRIVER.getTitle().contains("Registration Confirmation Page");
-	}
-	
+	}	
 }

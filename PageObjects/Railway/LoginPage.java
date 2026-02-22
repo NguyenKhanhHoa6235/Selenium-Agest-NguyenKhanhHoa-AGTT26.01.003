@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Class.User;
+import Common.Utilities;
 import Constant.Constant;
 
 public class LoginPage extends GeneralPage {
@@ -35,23 +36,20 @@ public class LoginPage extends GeneralPage {
         return Constant.WEBDRIVER.findElement(_lblForgotPassword);
     }
     
-	
  // Methods
     public HomePage login(String username, String password) {
-        this.getTxtUsername().sendKeys(username);
-        this.getTxtPassword().sendKeys(password);
-        this.getBtnLogin().click();
+    		Utilities.scrollAndSenkeys(getTxtUsername(), username);
+    		Utilities.scrollAndSenkeys(getTxtPassword(), password);
+    		Utilities.scrollAndClick(getBtnLogin());
         return new HomePage();
     }
     
     public HomePage login(User user) {     
         return login(user.getUsername(), user.getPassword());
     }
-    
-   
+     
 	public String getLoginErrorMsg()
 	{
-
 	    return this.getLblLoginErrorMsg().getText();
 	}
 	

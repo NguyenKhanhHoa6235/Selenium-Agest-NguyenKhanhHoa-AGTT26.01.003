@@ -16,27 +16,26 @@ import Constant.MenuItem;
 import Constant.SeaTypeTicket;
 import Constant.StationTicket;
 
-public class BookTicketTest extends TestBase {
-	User userAccount = new User();
-	BookTicket bookTicket = new BookTicket();
-	
+public class BookTicketTest extends TestBase {	
     @Test
     public void TC012() {
-    		//Data
-        userAccount.setUsername("nguyenvan@sharklasers.com");
-        userAccount.setPassword("14725836");
+        System.out.println("TC012 - User can book 1 ticket at a time");
         
+    		//Data
+    		User userAccount = new User();    	
+        userAccount.setPassword("12345678");
+        
+        BookTicket bookTicket = new BookTicket();
         bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
         bookTicket.setArrive(StationTicket.HUE.getDisplayText());
         bookTicket.setSeatType(SeaTypeTicket.SOFT_BED_WITH_AIR_CONDITIONER.getDisplayText());
         bookTicket.setTicketAmount("1");
         
-        System.out.println("TC012 - User can book 1 ticket at a time");
-        
         //Step
         System.out.println("Pre-condition: an actived account is existing");
-//    		String fullEmailAdrress = registerWithEmailGuerrilla(CurrentPassword, CurrentPassword);
-          
+    		String fullEmailAdrress = registerWithEmailGuerrilla(userAccount.getPassword(), userAccount.getPassword());
+    		userAccount.setUsername(fullEmailAdrress);
+    		
         System.out.println("1. Navigate to QA Railway Website");
         System.out.println("2. Login with a valid account ");  
         HomePage homePage = new HomePage();
@@ -87,20 +86,22 @@ public class BookTicketTest extends TestBase {
     
     @Test
     public void TC013() {
-    		//Data
-        userAccount.setUsername("nguyenvan@sharklasers.com");
-        userAccount.setPassword("14725836");
+        System.out.println("TC013 - User can book many tickets at a time");
         
+    		//Data
+    		User userAccount = new User();  
+        userAccount.setPassword("14785236");
+        
+        BookTicket bookTicket = new BookTicket();
         bookTicket.setDepartStation(StationTicket.NHATRANG.getDisplayText());
         bookTicket.setArrive(StationTicket.SAIGON.getDisplayText());
         bookTicket.setSeatType(SeaTypeTicket.SOFT_SEAT_WITH_AIR_CONDITIONER.getDisplayText());
-        bookTicket.setTicketAmount("5");     
-               
-        System.out.println("TC013 - User can book many tickets at a time");
+        bookTicket.setTicketAmount("5");                  
         
         //Step
         System.out.println("Pre-condition: an actived account is existing");
-//    		String fullEmailAdrress = registerWithEmailGuerrilla(CurrentPassword, CurrentPassword);
+    	 	String fullEmailAdrress = registerWithEmailGuerrilla(userAccount.getPassword(), userAccount.getPassword());
+		userAccount.setUsername(fullEmailAdrress);
           
         System.out.println("1. Navigate to QA Railway Website");
         System.out.println("2. Login with a valid account ");  
@@ -151,15 +152,17 @@ public class BookTicketTest extends TestBase {
     
     @Test
     public void TC014() {
-    		//Data
-        userAccount.setUsername("nguyenvan@sharklasers.com");
-        userAccount.setPassword("14725836");
-   
         System.out.println("TC014 - User can book many tickets at a time");
+        
+    		//Data
+    		User userAccount = new User();
+        userAccount.setPassword("123456788");
         
         //Step
         System.out.println("Pre-condition: an actived account is existing");
-          
+ 		String fullEmailAdrress = registerWithEmailGuerrilla(userAccount.getPassword(), userAccount.getPassword());
+		userAccount.setUsername(fullEmailAdrress);
+		
         System.out.println("1. Navigate to QA Railway Website");
         System.out.println("2. Login with a valid account ");  
         HomePage homePage = new HomePage();
@@ -194,10 +197,13 @@ public class BookTicketTest extends TestBase {
     
     @Test
     public void TC015() {
-    		//Data
-        userAccount.setUsername("nguyenvan@sharklasers.com");
-        userAccount.setPassword("14725836");
+        System.out.println("TC015 - User can book ticket from Timetable");
         
+    		//Data
+    		User userAccount = new User();
+        userAccount.setPassword("12345678");
+        
+        BookTicket bookTicket = new BookTicket();
         bookTicket.setDepartStation(null);
         bookTicket.setArrive(null);
         bookTicket.setSeatType(null);
@@ -205,12 +211,12 @@ public class BookTicketTest extends TestBase {
         
         String expectedDepartStation = StationTicket.QUANGNGAI.getDisplayText();
         String expectedArrive = StationTicket.HUE.getDisplayText();
-   
-        System.out.println("TC015 - User can book ticket from Timetable");
         
         //Step
         System.out.println("Pre-condition: an actived account is existing");
-          
+ 		String fullEmailAdrress = registerWithEmailGuerrilla(userAccount.getPassword(), userAccount.getPassword());
+		userAccount.setUsername(fullEmailAdrress);
+		
         System.out.println("1. Navigate to QA Railway Website");
         System.out.println("2. Login with a valid account ");  
         HomePage homePage = new HomePage();

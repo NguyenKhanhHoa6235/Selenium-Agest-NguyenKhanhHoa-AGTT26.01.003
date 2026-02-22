@@ -7,27 +7,28 @@ import Constant.Constant;
 import Constant.MenuItem;
 import Class.User;
 
-public class LogoutTest extends TestBase {
-	User userAccount = new User();
-    
+public class LogoutTest extends TestBase {   
     @Test
     public void TC06() {
         System.out.println("TC06 - User is redirected to Home page after logging out");
-        userAccount.setUsername(Constant.USERNAME);
-        userAccount.setPassword(Constant.PASSWORD);
         
+        //Data
+        User userAccount = new User(Constant.USERNAME, Constant.PASSWORD);   
+        
+        //Step
         System.out.println("1. Navigate to QA Railway Website");
-        System.out.println("2. Login with valid Email and Password");
-        System.out.println("3. Click on \"FAQ\" tab");
-        System.out.println("4. Click on \"Log out\" tab");
         HomePage homePage = new HomePage();
         homePage.open();
+        
         //Verify 1
         Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
 
+        System.out.println("2. Login with valid Email and Password");
         LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
-        loginPage.login(userAccount);
+        loginPage.login(userAccount);      
         
+        System.out.println("3. Click on \"FAQ\" tab");
+        System.out.println("4. Click on \"Log out\" tab");
         FAQPage FaqPage = homePage.gotoPage(MenuItem.LOGOUT, FAQPage.class);
         HomePage homePageOut = homePage.gotoPage(MenuItem.LOGOUT, HomePage.class);
         

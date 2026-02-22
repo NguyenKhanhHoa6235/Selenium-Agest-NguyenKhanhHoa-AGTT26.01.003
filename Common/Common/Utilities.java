@@ -68,6 +68,19 @@ public class Utilities {
         Constant.WEBDRIVER.switchTo().window(firstWindow);
     }
     
+    public static void switchToNewWindow() {
+        String parentWindow = Constant.WEBDRIVER.getWindowHandle();
+
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+        for (String window : Constant.WEBDRIVER.getWindowHandles()) {
+            if (!window.equals(parentWindow)) {
+                Constant.WEBDRIVER.switchTo().window(window);
+                break;
+            }
+        }
+    }
     //WAIT
     public static By waitForVisible(By locator, int timeout){
     		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(timeout));
@@ -163,6 +176,18 @@ public class Utilities {
     public static void scrollAndClick(WebElement element){
 		scrollToElement(element);
 		element.click();
+    }
+    
+    //SCROLL AND SENKEYS
+   
+    public static void scrollAndSenkeys(By locotor, String text){
+		scrollToElement(locotor);
+		Constant.WEBDRIVER.findElement(locotor).sendKeys(text);
+    }
+    
+    public static void scrollAndSenkeys(WebElement element, String text){
+		scrollToElement(element);
+		element.sendKeys(text);
     }
     
     //SELECT

@@ -11,12 +11,22 @@ import Common.Utilities;
 import Constant.Constant;
 
 public class MyTicketPage {
-	// Locators 
+    // Variables
+    private static final String CANCEL_BUTTON_XPATH =
+            "//table//tr[" +
+            "td[normalize-space()='%s']" +
+            "/following-sibling::td[normalize-space()='%s']" +
+            " and td[normalize-space()='%s']" +
+            " and td[normalize-space()='%s']" +
+            " and td[normalize-space()='%s']" +
+            "]//input[@value='Cancel']";
+
+    // Locators
     private final By _lblManageTicketMgs = By.xpath("//div[@id='content']//h1[@align='center']");
     private final By _ticketTable = By.xpath("//table[@class='MyTable']");
     private final By _tableHeaders = By.xpath("//table[@class='MyTable']//th");
     private final By _tableRows = By.xpath("//table[@class='MyTable']//tbody//tr");
-    
+
     // Elements
     public List<WebElement> getHeaders() {
         return Constant.WEBDRIVER.findElements(Utilities.waitForVisible(_tableHeaders));
@@ -25,60 +35,49 @@ public class MyTicketPage {
     public List<WebElement> getRows() {
         return Constant.WEBDRIVER.findElements(Utilities.waitForVisible(_tableRows));
     }
-    
+
     public WebElement getLblManageTicketMgs() {
         return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lblManageTicketMgs));
     }
-    
+
+    private WebElement getCancelButtonElement(String bookDate,String departStation,String arriveStation,String seatType,String ticketAmount) {
+        By _btnCancel = By.xpath(String.format(
+                CANCEL_BUTTON_XPATH,
+                departStation,
+                arriveStation,
+                seatType,
+                bookDate,
+                ticketAmount
+        ));
+
+        return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_btnCancel));
+    }
+
+
     // Methods
     public String getManageTicketMgs() {
-		return getLblManageTicketMgs().getText();
-	}
-    
-    public void clickCancelButton(String bookDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
-        By _btnCancel = By.xpath(
-            "//table//tr[" +
-                "td[normalize-space()='" + departStation + "']" +
-                "/following-sibling::td[normalize-space()='" + arriveStation + "']" +
-                " and td[normalize-space()='" + seatType + "']" +
-                " and td[normalize-space()='" + bookDate + "']" +
-                " and td[normalize-space()='" + ticketAmount + "']" +
-            "]//input[@value='Cancel']"
-        );
-
-        Utilities.scrollToElement(_btnCancel);
-        WebElement cancelButton = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_btnCancel));
-
-        cancelButton.click();
+        return getLblManageTicketMgs().getText();
     }
-    
+
+    public void clickCancelButton(String bookDate,String departStation,String arriveStation,String seatType,String ticketAmount) {
+        Utilities.scrollToBottomPage();
+        getCancelButtonElement(bookDate, departStation, arriveStation, seatType, ticketAmount).click();
+    }
+
     public void clickCancelButton(String today, BookTicket bookTicket) {
-        String bookDate = today;
-        String departStation = bookTicket.getDepartStation();
-        String arriveStation = bookTicket.getArrive();
-        String seatType = bookTicket.getSeatType();
-        String ticketAmount = bookTicket.getTicketAmount();
-        
-        By _btnCancel = By.xpath(
-            "//table//tr[" +
-                "td[normalize-space()='" + departStation + "']" +
-                "/following-sibling::td[normalize-space()='" + arriveStation + "']" +
-                " and td[normalize-space()='" + seatType + "']" +
-                " and td[normalize-space()='" + bookDate + "']" +
-                " and td[normalize-space()='" + ticketAmount + "']" +
-            "]//input[@value='Cancel']"
+
+        clickCancelButton(
+                today,
+                bookTicket.getDepartStation(),
+                bookTicket.getArrive(),
+                bookTicket.getSeatType(),
+                bookTicket.getTicketAmount()
         );
-
-        Utilities.scrollToElement(_btnCancel);
-        WebElement cancelButton = Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_btnCancel));
-
-        cancelButton.click();
-    }
-    
-    public List<Map<String, String>> getTableManageTicket(){
-		Utilities.waitForVisible(_lblManageTicketMgs);
-		Utilities.waitForVisible(_ticketTable);	
-		return Utilities.convertRowsToMap(getRows(), getHeaders());
     }
 
+    public List<Map<String, String>> getTableManageTicket() {
+        Utilities.waitForVisible(_lblManageTicketMgs);
+        Utilities.waitForVisible(_ticketTable);
+        return Utilities.convertRowsToMap(getRows(), getHeaders());
+    }
 }

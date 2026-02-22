@@ -2,11 +2,9 @@ package Railway;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import Common.Utilities;
 import Constant.Constant;
-import Constant.StationTicket;
 
 public class BookTicketPage extends GeneralPage{
 	
@@ -59,8 +57,7 @@ public class BookTicketPage extends GeneralPage{
         Utilities.scrollAndClick(getBtnBookTicket());    
         
         return new TicketBookedPage();
-    }
-    
+    }  
     
     public String getDepartDateFirstOption() {
 	    	return Utilities.getSelectFirstOption(getDropdownDepartDate());

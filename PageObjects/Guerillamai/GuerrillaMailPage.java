@@ -13,10 +13,11 @@ public class GuerrillaMailPage {
     private final By _btnSetEmailInput = By.xpath("//span[@id='inbox-id']//button[@class='save button small']");
     private final By _lblEmailAddress = By.xpath("//span[@id='email-widget']");
     private final By _chkScrambleAddress = By.xpath("//input[@id='use-alias']");
-    private final By _firstMail = By.xpath("//tbody[@id='email_list']//tr[1]//td[contains(text(),'thanhletraining03@gmail.com')]");
+    private final By _EmailConfirmAccount = By.xpath("//tbody[@id='email_list']//tr[1]//td[contains(normalize-space(.), 'Please confirm your account')]");
+    private final By _EmailResetPassword = By.xpath("//tbody[@id='email_list']//tr[1]//td[contains(normalize-space(.), 'Please reset your password')]");
     private final By _confirmationEmail = By.xpath("//h3[@class='email_subject']//following-sibling::div[@class='email_body']//a");
     
-    // Elements
+    // ElementsPlease confirm your account
     public WebElement getLbnEmailInput()
     {
     		return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_lbnEmailInput));
@@ -44,7 +45,7 @@ public class GuerrillaMailPage {
     
     public WebElement getFirstMail()
     {
-    		return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_firstMail));
+    		return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_EmailConfirmAccount));
     }
     
     public WebElement getConfirmationEmail()
@@ -73,11 +74,16 @@ public class GuerrillaMailPage {
 	}
     
     public void openFirstMail() {
-	    	Utilities.scrollAndClick(Utilities.waitForVisible(_firstMail));
+	    	Utilities.scrollAndClick(Utilities.waitForVisible(_EmailConfirmAccount));
 	    	Utilities.scrollToElement(_confirmationEmail);
-	    	Utilities.jsClick(_confirmationEmail);
-	    	System.out.println("hahaha");	
+	    	Utilities.jsClick(_confirmationEmail);	
 	}
+    
+    public void openEmailRest() {
+    	Utilities.scrollAndClick(Utilities.waitForVisible(_EmailResetPassword));
+    	Utilities.scrollToElement(_confirmationEmail);
+    	Utilities.jsClick(_confirmationEmail);	
+}
 }
 
 

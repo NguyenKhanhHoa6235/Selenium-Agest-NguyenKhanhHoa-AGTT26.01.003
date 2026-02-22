@@ -7,6 +7,9 @@ import Constant.Constant;
 import Constant.MenuItem;
 
 public abstract class GeneralPage {
+	//Variables
+	private static final String MENU_ITEM_XPATH ="//div[@id='menu']//span[normalize-space()='%s']";
+
 	// Locators
 	private final By _tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
 	private final By _tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
@@ -14,6 +17,7 @@ public abstract class GeneralPage {
 	private final By _tabRegister = By.xpath("//div[@id='menu']//a[@href=\"/Account/Register.cshtml\"]");
 	private final By _tagBookTicket = By.xpath("//div[@id='menu']//span[text()='Book ticket']");
 	private final By _lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
+	
 	// Elements
 	protected WebElement getTabLogin() {
 	    return Constant.WEBDRIVER.findElement(_tabLogin);
@@ -46,7 +50,7 @@ public abstract class GeneralPage {
 	}
 
     protected By getMenuItemLocator(MenuItem menu) {
-        return By.xpath("//div[@id='menu']//span[text()='" + menu.getDisplayText() + "']");
+    		return By.xpath(String.format(MENU_ITEM_XPATH, menu.getDisplayText()));
     }
     
     protected <T> T gotoPage(MenuItem menu, Class<T> pageClass) {

@@ -9,22 +9,20 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">49,076</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">140,724</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Railway.CancelBookingTest</td><td><a href="#m0">TC016</a></td><td rowspan="1">1770872094922</td><td rowspan="1">46763</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Railway.BookTicketTest</td><td><a href="#m0">TC015</a></td><td rowspan="1">1771788766602</td><td rowspan="1">32208</td></tr><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">Railway.BookTicketTest</td><td><a href="#m1">TC012</a></td><td rowspan="1">1771788661133</td><td rowspan="1">31521</td></tr><tr class="passedeven"><td><a href="#m2">TC013</a></td><td rowspan="1">1771788693953</td><td rowspan="1">34979</td></tr><tr class="passedeven"><td><a href="#m3">TC014</a></td><td rowspan="1">1771788730238</td><td rowspan="1">35140</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">Railway.CancelBookingTest#TC016</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element found by By.xpath: //table//tr[td[normalize-space()=&apos;Nha Trang&apos;]/following-sibling::td[normalize-space()=&apos;Huế&apos;] and td[normalize-space()=&apos;Soft seat with air conditioner&apos;] and td[normalize-space()=&apos;02/12/2026&apos;] and td[normalize-space()=&apos;1&apos;]]//input[@value=&apos;Cancel&apos;]
-(tried for 30 seconds with 500 milliseconds interval)
+<h2>Default test</h2><h3 id="m0">Railway.BookTicketTest#TC015</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Cannot locate option with text: 2/24/2026
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
 Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57894}, goog:processID: 18352, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57894/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 82653a92a8e82e876594ff91583984c9
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at Common.Utilities.scrollToElement(Utilities.java:140)
-	at Railway.MyTicketPage.clickCancelButton(MyTicketPage.java:72)
-	at Railway.CancelBookingTest.TC016(CancelBookingTest.java:54)
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:400)
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:128)
+	at Common.Utilities.selectByVisibleText(Utilities.java:201)
+	at Railway.BookTicketPage.bookTicket(BookTicketPage.java:47)
+	at Railway.BookTicketTest.TC015(BookTicketTest.java:247)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -52,5 +50,8 @@ Session ID: 82653a92a8e82e876594ff91583984c9
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">Railway.BookTicketTest#TC012</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">Railway.BookTicketTest#TC013</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">Railway.BookTicketTest#TC014</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

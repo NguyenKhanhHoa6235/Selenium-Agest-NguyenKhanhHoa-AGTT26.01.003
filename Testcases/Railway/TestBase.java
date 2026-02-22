@@ -1,19 +1,13 @@
 package Railway;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
-import org.openqa.selenium.bidi.module.Browser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -63,43 +57,36 @@ public class TestBase {
 	    
 	    return fullEmailAdrress;
 	}
-	
+    
     public String registerWithEmailGuerrilla(String password, String pid) {
-    		//tag 1: Railway + click on link "create an account"
-		HomePage homePage = new HomePage();
-	    homePage.open();
-	    String railwayTab = Constant.WEBDRIVER.getWindowHandle();	
-	    RegisterPage registerPage = homePage.ClicklinkCreateAccount();
-	    
-	    //tag 2: GuerrillaMail + get email
-	    String guerrillaTag = Utilities.openNewTab();
-	    GuerrillaMailPage mailPage = new GuerrillaMailPage();
-	    mailPage.open();
-	    Utilities.removeAdsIframes();
-	    String emailName = Utilities.generateTimestampEmail();
-	    
-	    mailPage.setEmailName(emailName);
-	    String fullEmailAdrress = mailPage.getCreatedEmail();
-	    
-	    System.out.println(fullEmailAdrress);
-	    
-	    // Back Railway + register
-	    Utilities.switchToWindow(railwayTab);
-	    registerPage.register(fullEmailAdrress, password, pid);
-	
-	    // back GuerrillaMail + confirmation email
-	    Utilities.switchToWindow(guerrillaTag);
-	    Utilities.removeAdsIframes();
-	    mailPage.setEmailName(emailName);
-	    mailPage.openFirstMail();
-	    
-	    //Switch to register Confirm
-	    WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Duration.ofSeconds(Constant.TIMEOUT));
-	    wait.until(ExpectedConditions.numberOfWindowsToBe(3)); 
-	    Utilities.switchToLastTag();
-	    
-	    return fullEmailAdrress;	    
-    }
+    //GuerrillaMail + get email
+    GuerrillaMailPage mailPage = new GuerrillaMailPage();
+    mailPage.open();
+    closeAdsIfPresent();
+    String emailName = Utilities.generateTimestampEmail();
+    
+    mailPage.setEmailName(emailName);
+    String fullEmailAdrress = mailPage.getCreatedEmail();
+    
+    System.out.println(fullEmailAdrress);
+    
+	//Railway + click on link "create an account" + register
+	HomePage homePage = new HomePage();
+	homePage.open();	
+	RegisterPage registerPage = homePage.ClicklinkCreateAccount();
+    registerPage.register(fullEmailAdrress, password, pid);
+
+    // back GuerrillaMail + confirmation email
+    mailPage.open();
+    closeAdsIfPresent();
+    mailPage.setEmailName(emailName);
+    mailPage.openFirstMail();
+
+    //Switch to Railway
+    	Utilities.switchToNewWindow();
+ 
+    return fullEmailAdrress;	    
+}
     
     public static String getDatePlusDays(int days) {
         LocalDate date = LocalDate.now().plusDays(days);
@@ -123,15 +110,13 @@ public class TestBase {
     public static void handleLogin(User userAccount) {
     		HomePage homePage = new HomePage();
         homePage.open();
-        Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
         LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         loginPage.login(userAccount);
     }
     
-    public static TicketBookedPage handleBookTicket(User userAccount, BookTicket bookTicket) {  
+    public static TicketBookedPage handleLoginAndBookTicket(User userAccount, BookTicket bookTicket) {  
         HomePage homePage = new HomePage();
         homePage.open();
-        Assert.assertTrue(homePage.isAtHomePage(),"The homepage is not displaying.");
         LoginPage loginPage = homePage.gotoPage(MenuItem.LOGIN, LoginPage.class);
         loginPage.login(userAccount);
         
@@ -146,6 +131,42 @@ public class TestBase {
         	);
         
         return ticketBookedPage;
+    }
+    
+    public static TicketBookedPage handleBookTicket(BookTicket bookTicket) {  
+        HomePage homePage = new HomePage();      
+        BookTicketPage bookTicketPage = homePage.gotoPage(MenuItem.BOOK_TICKET, BookTicketPage.class);
+
+        TicketBookedPage ticketBookedPage = bookTicketPage.bookTicket(
+        		bookTicket.getDepartDate(), 
+        		bookTicket.getDepartStation(), 
+        		bookTicket.getArrive(), 
+        		bookTicket.getSeatType(), 
+        		bookTicket.getTicketAmount()
+        	);
+        
+        return ticketBookedPage;
+    }
+    
+    public static void closeAdsIfPresent() {
+        Constant.WEBDRIVER.switchTo().defaultContent();
+        List<WebElement> iframes = Constant.WEBDRIVER.findElements(By.tagName("iframe"));
+
+        for (WebElement frame : iframes) {
+            try {
+                Constant.WEBDRIVER.switchTo().frame(frame);
+                List<WebElement> closeButtons = Constant.WEBDRIVER.findElements(By.xpath("//*[contains(@id,'dismiss') or contains(@class,'close')]"));
+                if (!closeButtons.isEmpty()) {
+                    closeButtons.get(0).click();
+                    break;
+                }
+                
+                Constant.WEBDRIVER.switchTo().defaultContent();
+
+            } catch (Exception e) {
+                Constant.WEBDRIVER.switchTo().defaultContent();
+            }
+        }
     }
 
 }

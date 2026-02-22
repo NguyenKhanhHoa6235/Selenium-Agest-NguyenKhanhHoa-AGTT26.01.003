@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="Railway.BookTicketTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="TC015"/>
+          <include name="TC014"/>
+          <include name="TC013"/>
+          <include name="TC012"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- Railway.BookTicketTest -->
+      <class name="Railway.ResetPasswordTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="TC011"/>
+          <include name="afterMethod"/>
+          <include name="TC010"/>
+        </methods>
+      </class> <!-- Railway.ResetPasswordTest -->
+      <class name="Railway.LoginTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="TC05"/>
+          <include name="TC02"/>
+          <include name="TC01"/>
+          <include name="TC04"/>
+          <include name="TC03"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- Railway.LoginTest -->
+      <class name="Railway.CancelBookingTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="TC016"/>
+        </methods>
+      </class> <!-- Railway.CancelBookingTest -->
+      <class name="Railway.RegisterTest">
+        <methods>
+          <include name="TC08"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="TC09"/>
+          <include name="TC07"/>
+        </methods>
+      </class> <!-- Railway.RegisterTest -->
+      <class name="Railway.LogoutTest">
+        <methods>
+          <include name="TC06"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- Railway.LogoutTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

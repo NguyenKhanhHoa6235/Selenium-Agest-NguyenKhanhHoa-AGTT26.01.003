@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>3/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Feb 12 11:54:52 GMT+07:00 2026</td>
+<td>Started on:</td><td>Mon Feb 23 02:30:58 GMT+07:00 2026</td>
 </tr>
-<tr><td>Total time:</td><td>49 seconds (49076 ms)</td>
+<tr><td>Total time:</td><td>140 seconds (140724 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,19 +76,17 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Railway.CancelBookingTest.TC016()'><b>TC016</b><br>Test class: Railway.CancelBookingTest</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element found by By.xpath: //table//tr[td[normalize-space()=&apos;Nha Trang&apos;]/following-sibling::td[normalize-space()=&apos;Huế&apos;] and td[normalize-space()=&apos;Soft seat with air conditioner&apos;] and td[normalize-space()=&apos;02/12/2026&apos;] and td[normalize-space()=&apos;1&apos;]]//input[@value=&apos;Cancel&apos;]
-(tried for 30 seconds with 500 milliseconds interval)
+<td title='Railway.BookTicketTest.TC015()'><b>TC015</b><br>Test class: Railway.BookTicketTest</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Cannot locate option with text: 2/24/2026
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
 Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57894}, goog:processID: 18352, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57894/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 82653a92a8e82e876594ff91583984c9
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at Common.Utilities.scrollToElement(Utilities.java:140)
-	at Railway.MyTicketPage.clickCancelButton(MyTicketPage.java:72)
-	at Railway.CancelBookingTest.TC016(CancelBookingTest.java:54)
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:400)
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:128)
+	at Common.Utilities.selectByVisibleText(Utilities.java:201)
+	at Railway.BookTicketPage.bookTicket(BookTicketPage.java:47)
+	at Railway.BookTicketTest.TC015(BookTicketTest.java:247)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -115,19 +113,17 @@ Session ID: 82653a92a8e82e876594ff91583984c9
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace741390111", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace741390111'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element found by By.xpath: //table//tr[td[normalize-space()=&apos;Nha Trang&apos;]/following-sibling::td[normalize-space()=&apos;Huế&apos;] and td[normalize-space()=&apos;Soft seat with air conditioner&apos;] and td[normalize-space()=&apos;02/12/2026&apos;] and td[normalize-space()=&apos;1&apos;]]//input[@value=&apos;Cancel&apos;]
-(tried for 30 seconds with 500 milliseconds interval)
+</pre></div><a href='#' onClick='toggleBox("stack-trace940563698", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace940563698'><pre>org.openqa.selenium.NoSuchElementException: Cannot locate option with text: 2/24/2026
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
 Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\nguye\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57894}, goog:processID: 18352, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57894/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 82653a92a8e82e876594ff91583984c9
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at Common.Utilities.scrollToElement(Utilities.java:140)
-	at Railway.MyTicketPage.clickCancelButton(MyTicketPage.java:72)
-	at Railway.CancelBookingTest.TC016(CancelBookingTest.java:54)
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:400)
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:128)
+	at Common.Utilities.selectByVisibleText(Utilities.java:201)
+	at Railway.BookTicketPage.bookTicket(BookTicketPage.java:47)
+	at Railway.BookTicketTest.TC015(BookTicketTest.java:247)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -155,8 +151,32 @@ Session ID: 82653a92a8e82e876594ff91583984c9
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>46</td>
-<td>Railway.CancelBookingTest@5af3afd9</td></tr>
+<td>32</td>
+<td>Railway.BookTicketTest@359f7cdf</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Railway.BookTicketTest.TC013()'><b>TC013</b><br>Test class: Railway.BookTicketTest</td>
+<td></td>
+<td>34</td>
+<td>Railway.BookTicketTest@359f7cdf</td></tr>
+<tr>
+<td title='Railway.BookTicketTest.TC012()'><b>TC012</b><br>Test class: Railway.BookTicketTest</td>
+<td></td>
+<td>31</td>
+<td>Railway.BookTicketTest@359f7cdf</td></tr>
+<tr>
+<td title='Railway.BookTicketTest.TC014()'><b>TC014</b><br>Test class: Railway.BookTicketTest</td>
+<td></td>
+<td>35</td>
+<td>Railway.BookTicketTest@359f7cdf</td></tr>
 </table><p>
 </body>
 </html>

@@ -3,6 +3,7 @@ package Railway;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import Common.Utilities;
 import Constant.Constant;
 
 public class ForgetPasswordPage extends GeneralPage{
@@ -25,6 +26,7 @@ public class ForgetPasswordPage extends GeneralPage{
 	}
 	
 	public void clickButtonSendInstructions() {
+		Utilities.scrollToElement(_btnSendInstructions);
 		getBtnSendInstructions().click();
 	}
 
