@@ -3,6 +3,7 @@ package Railway;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -168,5 +169,25 @@ public class TestBase {
             }
         }
     }
+    
+    public static boolean isMapExistInList(
+            List<Map<String, String>> list,
+            Map<String, String> expectedMap) {
 
+        for (Map<String, String> actualMap : list) {
+            boolean match = true;
+
+            for (String key : expectedMap.keySet()) {
+                if (!expectedMap.get(key)
+                        .equals(actualMap.get(key))) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

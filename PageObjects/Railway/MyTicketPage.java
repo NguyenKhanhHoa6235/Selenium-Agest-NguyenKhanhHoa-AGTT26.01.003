@@ -49,10 +49,8 @@ public class MyTicketPage {
                 bookDate,
                 ticketAmount
         ));
-
         return Constant.WEBDRIVER.findElement(Utilities.waitForVisible(_btnCancel));
     }
-
 
     // Methods
     public String getManageTicketMgs() {

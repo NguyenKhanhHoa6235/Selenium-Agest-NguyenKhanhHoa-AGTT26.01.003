@@ -63,25 +63,36 @@ public class BookTicketTest extends TestBase {
         	);
         
         //Verify
+        //1. Verify message
         System.out.println("Verify: Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         String actualMsg = ticketBookedPage.getMessageTicketBookedSuccessfully();
         String expectedMsg = "Ticket booked successfully!";
-        
-        Utilities.scrollToBottomPage();
-        
-        List<Map<String, String>> tableTicketBooked = ticketBookedPage.getTableTicketBooked();
-//        Utilities.printTable(tableTicketBooked); 
-        Assert.assertFalse(tableTicketBooked.isEmpty(),"Ticket list is empty after booking");
-        
-        Map<String, String> expected = new LinkedHashMap<>();
-        expected.put("Depart Date", datePlusTwo);
-        expected.put("Depart Station", bookTicket.getDepartStation());
-        expected.put("Arrive Station", bookTicket.getArrive());
-        expected.put("Seat Type", bookTicket.getSeatType());
-        expected.put("Amount", bookTicket.getTicketAmount());
-        
         Assert.assertEquals(actualMsg, expectedMsg, "Message is not displayed as expected");
-        assertTrue(Utilities.isRowExistInTable(tableTicketBooked, expected), "Ticket information does not match expected data");
+        
+        //2. Verify table data
+        Utilities.scrollToBottomPage();
+        List<Map<String, String>> tableTicketBooked = ticketBookedPage.getTableTicketBooked();
+        Assert.assertFalse(tableTicketBooked.isEmpty(),"Ticket list is empty after booking");
+
+        Map<String, String> actualTicket = tableTicketBooked.get(0);
+
+        Map<String, String> expectedMap = new LinkedHashMap<>();
+        expectedMap.put("Depart Date", datePlusTwo);
+        expectedMap.put("Depart Station", bookTicket.getDepartStation());
+        expectedMap.put("Arrive Station", bookTicket.getArrive());
+        expectedMap.put("Seat Type", bookTicket.getSeatType());
+        expectedMap.put("Amount", bookTicket.getTicketAmount());
+
+        for (String column : expectedMap.keySet()) {
+            Assert.assertEquals(
+                    actualTicket.get(column),
+                    expectedMap.get(column),
+                    column + " mismatch. Expected: "
+                            + expectedMap.get(column)
+                            + " | Actual: "
+                            + actualTicket.get(column)
+            );
+        }    
     }
     
     @Test
@@ -130,24 +141,36 @@ public class BookTicketTest extends TestBase {
         	);
         
         //Verify
+        //1. Verify message
         System.out.println("Message \"Ticket booked successfully!\" displays. Ticket information display correctly (Depart Date,  Depart Station,  Arrive Station,  Seat Type,  Amount)");
         String actualMsg = ticketBookedPage.getMessageTicketBookedSuccessfully();
         String expectedMsg = "Ticket booked successfully!";
+        Assert.assertEquals(actualMsg, expectedMsg, "Verify fail:Message is not displayed as expected");      
         
+        //2. Verify table data
         Utilities.scrollToBottomPage();
-        
         List<Map<String, String>> tableTicketBooked = ticketBookedPage.getTableTicketBooked();
-//        Utilities.printTable(tableTicketBooked); 
         Assert.assertFalse(tableTicketBooked.isEmpty(),"Ticket list is empty after booking");
-        Map<String, String> expected = new LinkedHashMap<>();
-        expected.put("Depart Date", datePlus);
-        expected.put("Depart Station", bookTicket.getDepartStation());
-        expected.put("Arrive Station", bookTicket.getArrive());
-        expected.put("Seat Type", bookTicket.getSeatType());
-        expected.put("Amount", bookTicket.getTicketAmount());
-        
-        Assert.assertEquals(actualMsg, expectedMsg, "Verify fail:Message is not displayed as expected");
-        assertTrue(Utilities.isRowExistInTable(tableTicketBooked, expected), "Verify fail: Ticket information does not match expected data");
+
+        Map<String, String> actualTicket = tableTicketBooked.get(0);
+
+        Map<String, String> expectedMap = new LinkedHashMap<>();
+        expectedMap.put("Depart Date", datePlus);
+        expectedMap.put("Depart Station", bookTicket.getDepartStation());
+        expectedMap.put("Arrive Station", bookTicket.getArrive());
+        expectedMap.put("Seat Type", bookTicket.getSeatType());
+        expectedMap.put("Amount", bookTicket.getTicketAmount());
+
+        for (String column : expectedMap.keySet()) {
+            Assert.assertEquals(
+                    actualTicket.get(column),
+                    expectedMap.get(column),
+                    column + " mismatch. Expected: "
+                            + expectedMap.get(column)
+                            + " | Actual: "
+                            + actualTicket.get(column)
+            );
+        } 
     }
     
     @Test
